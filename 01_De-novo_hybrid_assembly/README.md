@@ -459,7 +459,7 @@ The assignment to linkage groups was re-run.
         """
     }
 ![Linkage group assignment of corrected assembly](Images/linkage_group_assignment_ragtag_corrected_and_rescaffolded.jpg)
- 
+  
 ## Quality assessment <a name="QA1"></a>
 ### Assess quality of assembly - process quality_control <a name="QA2"></a>
 Genome completeness was assessed using BUSCO and genome stats were obtained using QUAST.
