@@ -9,7 +9,7 @@ the individual nextflow processes which are combined in a final workflow or indi
 of Nextflow. This script was run on the SciCORE computing cluster at the University of Basel with most modules pre-installed.
 Many scripts were adapted from Stephen Doyle's project on ancient and modern *Trichuris* genomes.
 [Population genomics of ancient and modern Trichuris trichiura](https://github.com/stephenrdoyle/ancient_trichuris/tree/master)
-
+ 
 Table of contents
 
 1. [Gene prediction](#annotation)
