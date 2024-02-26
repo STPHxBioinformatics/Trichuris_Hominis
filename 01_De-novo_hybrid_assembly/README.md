@@ -458,7 +458,7 @@ The assignment to linkage groups was re-run.
         seqkit sort -nN genome_with_new_headers.fasta -o Trichuris_cote_divoire_freeze.fasta
         """
     }
-![Linkage group assignment of corrected assembly](linkage_group_assignment_ragtag_corrected_and_rescaffolded.jpg)
+![Linkage group assignment of corrected assembly](Images/linkage_group_assignment_ragtag_corrected_and_rescaffolded.jpg)
 
 ## Quality assessment <a name="QA1"></a>
 ### Assess quality of assembly - process quality_control <a name="QA2"></a>
