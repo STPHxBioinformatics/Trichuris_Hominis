@@ -1,4 +1,4 @@
-# Genetic makeup of a Trichuris species, not responding to drug treatment in Côte d’Ivoire and potential drug targets from comparative genomic analyses
+# Genetic makeup of a *Trichuris* species, not responding to drug treatment in Côte d’Ivoire and potential drug targets from comparative genomic analyses
 
 Author: Max Bär, max.baer[at]swisstph.ch
 
