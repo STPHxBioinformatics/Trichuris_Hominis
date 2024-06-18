@@ -252,7 +252,8 @@ Gender data is provided in the QC folder.
 ### Initial basecalling for BQSR - process initial_basecalling_BQSR <a name="initial_BQSR"></a>
 Basecalling was done in a first round to obtain a subset of very likely SNP's for base quality score recalibration.
 Plots were generated for QUAL, DP, QD, FS, MQ, MQRankSum, SQR, ReadPosRankSum. This code is largely adapted from the 
-Doyle et al. paper on ancient and modern Trichuris
+Doyle et al. paper on ancient and modern Trichuris, wherefrom also the heterozygosity values were adapted. Jellyfish
+confirmed the same values for *Trichuris hominibus*.
 ![Plot_Stats](plot_nuclear_variant_summaries.png)
 ![Plot_Stats](table_nuclear_variant_quantiles.png)
 
@@ -278,270 +279,687 @@ Doyle et al. paper on ancient and modern Trichuris
       }
 
 
-### Extract coding sequences - process extract_cds_mito_fasta <a name="MitoZ6"></a>
-A custom python script was used to generally extract only coding sequences, not by gene.
+### Initial hard filtering for BQSR - process initial_SNP_BQSR <a name="initial"></a>
+An initial hard filtering was done based on the observed values for QUAL, DP, QD, FS, MQ, MQRankSum, SQR, ReadPosRankSum.
 
-      process extract_cds_mito_fasta {
-          publishDir '/*/Results_samples/CDS_only/', mode: 'copy'
+      process initial_SNP_BQSR {
+          maxForks 56
           
           input:
-              tuple val(pair_id), path(png), path(mito_fasta), path(mito_gbf)
+          tuple val(pair_id), path(reads)
       
           output:
-          tuple val(pair_id), path("${pair_id}_CDS.fasta")
-          
-          script:
-          """
-          ml load Python/3.9.5-GCCcore-10.3.0-bare
-          
-          python /*/extract_coding_sequence.py ${mito_gbf} ${mito_fasta}
-          """
-      }
-
-python script
-
-      import argparse
-      from Bio import SeqIO
-      
-      # Parse GBF file and extract coding regions
-      def extract_cds(gbf_file, fasta_file):
-          coding_regions = []
-          with open(gbf_file, "r") as gbf:
-              for line in gbf:
-                  if "CDS" in line:
-                      parts = line.split()
-                      parts_new = parts[1].strip('complement()<').split(sep='..')
-                      start = int(parts_new[0])
-                      end = str(parts_new[1])
-                      end2 = int(''.join(c for c in end if c.isdigit()))
-                      print(start, end2)
-                      coding_regions.append((start, end2))
-      
-          #Get header
-          with open(fasta_file, "r") as file:
-              lines = file.readlines()
-              header = lines[0].strip()
-      
-      
-          # Read mitochondrial sequence FASTA file and extract coding regions
-          coding_sequence = ""
-          for record in SeqIO.parse(fasta_file, "fasta"):
-              sequence = str(record.seq)
-              for start, end in coding_regions:
-                  coding_sequence += sequence[start-1:end]
-      
-          # Create a new FASTA file with coding regions
-          adjusted_file = fasta_file.replace(".fasta", "_CDS.fasta")
-          with open(adjusted_file, "w") as file:
-              file.write(f"{header}\n{coding_sequence}")
-      
-      parser = argparse.ArgumentParser()
-      parser.add_argument("gbf_file", help="Path to the gbf file")
-      parser.add_argument("fasta_file", help="Path to the fasta_file file")
-      args = parser.parse_args()
-      
-      cds_adjusted_fasta_file = extract_cds(args.gbf_file, args.fasta_file)
-      print("Adjusted FASTA file:", cds_adjusted_fasta_file)
-
-### Annotation and visualization of coding sequences as a QC - process mitoz_assembly_cds <a name="MitoZ7"></a>
-The concatenated coding sequences from the mitogenome were visualized again using MitoZ
-
-      process mitoz_assembly_cds {
-          input:
-        tuple val(pair_id), path(mito_fasta)
-          
-          output:
-          path("${pair_id}_CDS.png")
+          tuple val(pair_id), path("${pair_id}_SNP_FOR_BQSR.vcf"), path("${pair_id}_SNP_FOR_BQSR.vcf.idx")
       
           script:
-      
           """
-          ml load GD/2.66-goolf-1.7.20-Perl-5.22.2;
-          ml load SAMtools/1.7-goolf-1.7.20;
-          ml load BWA/0.7.17-goolf-1.7.20;
-          ml load Perl/5.22.2-goolf-1.7.20;
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
           
-          /scicore/home/schpie00/baer0006/packages/mitoz/MitoZ_v3.6.sif mitoz annotate --clade Nematoda --fastafiles ${mito_fasta} --outprefix MitoZ;
-          cp MitoZ.${pair_id}_CDS.fasta.result/circos.png ./${pair_id}_CDS.png
-          """
-      }
-
-### Reference mitochondrial genome annotation - process adjust_mito_ref_fasta, mitoz_ref_assembly_adjusted, extract_cds_ref_mito_fasta <a name="MitoZ8"></a>
-Slightly repetitive to the annotation, starting point adjustment and visualisation of the assembled mitogenomes is the 
-annotation of the reference genomes. 
-
-      /*
-      The reference is treated in the same way as the samples to avoid bias from the software. In a first step the reference is annotated to generate a gbf file.
-      */
-
-      process mito_ref_prep {
-          maxForks 60
+          gatk SelectVariants \
+          -R ${params.reference} \
+          -V ${reads} \
+          --select-type-to-include SNP \
+          -O ${pair_id}_first_raw_variants_SNP.vcf;
       
-          input:
-          path(ref_mito_fasta)
-          
-          output:
-          tuple path("${ref_mito_fasta.baseName.substring(0, 6)}.fasta"), path("MitoZ.${ref_mito_fasta.baseName.substring(0, 6)}.fasta.result/MitoZ_${ref_mito_fasta.baseName.substring(0, 6)}.fasta_mitoscaf.fa.gbf")
+          gatk VariantFiltration \
+          -R ${params.reference} \
+          -V ${pair_id}_first_raw_variants_SNP.vcf \
+          --filter-expression ' QUAL < 194 || QD < 10.3 || MQ < 43.61 || FS > 9.9 || SOR > 2.30 || MQRankSum < -1.269 || ReadPosRankSum < -1.174 ' \
+          --filter-name "SNP_5_filtered" \
+          -O ${pair_id}_filtered_first_raw_variants_SNP.vcf;
       
-          script:
-          def refID = ref_mito_fasta.baseName.substring(0, 6)
-      
-          """
-          ml load GD/2.66-goolf-1.7.20-Perl-5.22.2;
-          ml load SAMtools/1.7-goolf-1.7.20;
-          ml load BWA/0.7.17-goolf-1.7.20;
-          ml load Perl/5.22.2-goolf-1.7.20;
-                
-          sed -e "s/^>.*/>${refID} topology=circular/" ${ref_mito_fasta} > ${refID}.fasta;
-      
-          /*/mitoz/MitoZ_v3.6.sif mitoz annotate --clade Nematoda --fastafiles ${refID}.fasta --outprefix MitoZ;
-      
+          gatk SelectVariants \
+          --exclude-filtered \
+          -V ${pair_id}_filtered_first_raw_variants_SNP.vcf \
+          -O ${pair_id}_SNP_FOR_BQSR.vcf
           """
       }
       
-      /*
-      The starting position of the reference is adjusted to the starting position of the COX1 gene.
-      */
-
-      process adjust_mito_ref_fasta {
+      process initial_INDEL_BQSR {
+          maxForks 56
+          
           input:
-          tuple path(mito_ref_fasta), path(mito_ref_gbf)
+          tuple val(pair_id), path(reads)
       
           output:
-          path("${mito_ref_fasta.baseName.substring(0, 6)}_adjusted.fasta")
-          
+          tuple val(pair_id), path("${pair_id}_INDEL_FOR_BQSR.vcf"), path("${pair_id}_INDEL_FOR_BQSR.vcf.idx")
+      
           script:
-          def refID = mito_ref_fasta.baseName.substring(0, 6)
           """
-          ml load Python/3.9.5-GCCcore-10.3.0-bare
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
+          gatk SelectVariants \
+          -R ${params.reference} \
+          -V ${reads} \
+          --select-type-to-include INDEL \
+          -O ${pair_id}_first_raw_variants_INDEL.vcf;
+      
+          gatk VariantFiltration \
+          -R ${params.reference} \
+          -V ${pair_id}_first_raw_variants_INDEL.vcf \
+          --filter-expression ' QUAL < 101 || QD < 5.3 || FS > 11.4 || ReadPosRankSum < -1.336 ' \
+          --filter-name "INDEL_5_filtered" \
+          -O ${pair_id}_filtered_first_raw_variants_INDEL.vcf;
           
-          python /*/rearrange_mito.py ${mito_ref_fasta} "\$(grep -B 1 'COX1' ${mito_ref_gbf} | grep ' gene' | grep -oP '\\d+(?=\\.\\.)' | head -1)"
+          gatk SelectVariants \
+          --exclude-filtered \
+          -V ${pair_id}_filtered_first_raw_variants_INDEL.vcf \
+          -O ${pair_id}_INDEL_FOR_BQSR.vcf
+          """
+      }
+
+### BQSR - process BQSR <a name="BQSR"></a>
+Base quality score recalibration
+
+   process BQSR {
+       maxForks 56
+   
+       input:
+       tuple val(pair_id), path(SNPs), path(SNPindex), path(INDELs), path(INDELindex), path(BAM)
+   
+       output:
+       tuple val(pair_id), path("${pair_id}_BQSR_recal.bam"), path("${pair_id}_BQSR_data_recalibration_plots.pdf"), path("${pair_id}_BQSR_data.table"), path("${pair_id}_BQSR_data_post.table")
+   
+       script:
+       """
+       ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
+       ml load  R/4.2.2-foss-2021a
+       
+       gatk BaseRecalibrator \
+       -R ${params.reference} \
+       -I ${BAM} \
+       --known-sites ${SNPs} \
+       --known-sites ${INDELs} \
+       -O ${pair_id}_BQSR_data.table;
+   
+       gatk ApplyBQSR \
+       -R ${params.reference} \
+       -I ${BAM} \
+       -bqsr ${pair_id}_BQSR_data.table\
+       -O ${pair_id}_BQSR_recal.bam;
+   
+       gatk BaseRecalibrator \
+       -R ${params.reference} \
+       -I ${pair_id}_BQSR_recal.bam \
+       --known-sites ${SNPs} \
+       --known-sites ${INDELs} \
+       -O ${pair_id}_BQSR_data_post.table;
+   
+       gatk AnalyzeCovariates \
+       -before ${pair_id}_BQSR_data.table \
+       -after ${pair_id}_BQSR_data_post.table \
+       -plots ${pair_id}_BQSR_data_recalibration_plots.pdf
+       """
+   }
+
+### GVCF generation and merging - process GVCF <a name="GVCF"></a>
+GVCF generation and merging 
+
+      process GVCF {
+          maxForks 56
+      
+          input:
+          tuple val(pair_id), path(recal_BAMs), path(recalplot), path(datatable_pre), path(datatable_post)
+      
+          output:
+          tuple path("${pair_id}.g.vcf.gz"), path("${pair_id}.g.vcf.gz.tbi")
+      
+          script:
+          """
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
+          
+          gatk HaplotypeCaller \
+          -R ${params.reference} \
+          -I ${recal_BAMs} \
+          --heterozygosity 0.015 \
+          --indel-heterozygosity 0.01 \
+          -O ${pair_id}.g.vcf.gz \
+          -A DepthPerAlleleBySample \
+          -A Coverage \
+          -A ExcessHet \
+          -A FisherStrand \
+          -A MappingQualityRankSumTest \
+          -A StrandOddsRatio \
+          -A RMSMappingQuality \
+          -A ReadPosRankSumTest \
+          -A DepthPerSampleHC \
+          -A QualByDepth \
+          -ERC GVCF
           """
       }
       
-      /*
-      The reference is re-annotated with the adjusted starting position and the results put into the publishDir.
-      */
-
-      process mitoz_ref_assembly_adjusted {
-          maxForks 60
-      
-          publishDir '/*/Results_references/', mode: 'copy'
-          
+      process merge_GVCF {
           input:
-          path(mito_ref_fasta)
-          
+          path(VCFs)
+          path(VCF_indices)
+      
           output:
-          tuple path("${mito_ref_fasta}"), path("MitoZ.${mito_ref_fasta}.result/MitoZ_${mito_ref_fasta}_mitoscaf.fa.gbf"), path("${mito_ref_fasta.baseName.substring(0, 6)}.png")
+          tuple path("cohort.g.vcf.gz"), path("cohort.g.vcf.gz.tbi")
       
           script:
-          def refID = mito_ref_fasta.baseName.substring(0, 6)
-      
-          """
-          ml load GD/2.66-goolf-1.7.20-Perl-5.22.2;
-          ml load SAMtools/1.7-goolf-1.7.20;
-          ml load BWA/0.7.17-goolf-1.7.20;
-          ml load Perl/5.22.2-goolf-1.7.20;
           
-          /*/mitoz/MitoZ_v3.6.sif mitoz annotate --clade Nematoda --fastafiles ${mito_ref_fasta} --outprefix MitoZ;
-          cp MitoZ.${mito_ref_fasta}.result/circos.png ./${refID}.png
+          def input_list = VCFs.collect{"--variant $it"}.join(' ')
+          """
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
+      
+          gatk CombineGVCFs \
+          -R ${params.reference} \
+          $input_list \
+          -O cohort.g.vcf.gz
+          """
+      }
+
+### Genotyping and filtering <a name="geno"></a>
+Genotyping and filtering
+
+      process genotyping {
+          input:
+          tuple path(gVCF_cohort), path(index)
+      
+          output:
+          tuple path("Trichuris_CI_cohort.vcf.gz"), path("Trichuris_CI_cohort.vcf.gz.tbi")
+      
+          script:
+          """
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
+      
+          gatk GenotypeGVCFs \
+          -R ${params.reference} \
+          -V ${gVCF_cohort} \
+          -A DepthPerAlleleBySample \
+          -A Coverage \
+          -A ExcessHet \
+          -A FisherStrand \
+          -A MappingQualityRankSumTest \
+          -A StrandOddsRatio \
+          -A RMSMappingQuality \
+          -A ReadPosRankSumTest \
+          -A DepthPerSampleHC \
+          -A QualByDepth \
+          --heterozygosity 0.015 \
+              --indel-heterozygosity 0.01 \
+          -O Trichuris_CI_cohort.vcf.gz
           """
       }
       
-      /*
-      Extract CDS of reference. The final file still has to be checked and manually curated. Had some issues with the first numbers, didnt sprinkle on much syntax sugar yet
-      */
-
-      process extract_cds_ref_mito_fasta {
-          publishDir '/*/Results_references/CDS_fastas/', mode: 'copy'
-          
+      process select_geno_SNP_INDEL {
           input:
-          tuple path(mito_ref_fasta), path(mito_ref_gbf), path(png_dummy)
-      
+          tuple path(VCF_cohort), path(index)
+          
           output:
-          path("${mito_ref_fasta.baseName.substring(0, 6)}_adjusted_CDS.fasta")
+          tuple path("Trichuris_CI_cohort.genoSNP.vcf.gz"), path("Trichuris_CI_cohort.genoSNP.vcf.gz.tbi"), path("Trichuris_CI_cohort.genoINDEL.vcf.gz"), path("Trichuris_CI_cohort.genoINDEL.vcf.gz.tbi")
           
           script:
-          def refID = mito_ref_fasta.baseName.substring(0, 6)
-      
           """
-          ml load Python/3.9.5-GCCcore-10.3.0-bare
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
+          gatk SelectVariants \
+          -R ${params.reference} \
+          --variant ${VCF_cohort} \
+          --select-type-to-include SNP \
+          -O Trichuris_CI_cohort.genoSNP.vcf.gz
           
-          python /*/extract_coding_sequence.py ${mito_ref_gbf} ${mito_ref_fasta}
+          gatk SelectVariants \
+          -R ${params.reference} \
+          --variant ${VCF_cohort} \
+          --select-type-to-include INDEL \
+          -O Trichuris_CI_cohort.genoINDEL.vcf.gz
           """
       }
+      
+      process make_table_geno_SNP_INDEL {
+          input:
+          tuple path(genoSNP_vcf), path(genoSNP_vcf_index), path(genoINDEL_vcf), path(genoINDEL_vcf_index)
+      
+          output:
+          tuple path("geno_snp_vcf.table"), path("geno_indel_vcf.table")
+      
+          script:
+          """
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
+          gatk VariantsToTable \
+          -R ${params.reference} \
+          --variant ${genoSNP_vcf} \
+          --fields CHROM --fields POS --fields QUAL --fields QD --fields DP --fields MQ --fields MQRankSum --fields FS --fields ReadPosRankSum --fields SOR \
+          -O geno_snp_vcf.table
+      
+      
+          gatk VariantsToTable \
+          -R ${params.reference} \
+          --variant ${genoINDEL_vcf} \
+          --fields CHROM --fields POS --fields QUAL --fields QD --fields DP --fields MQ --fields MQRankSum --fields FS --fields ReadPosRankSum --fields SOR \
+          -O geno_indel_vcf.table
+          """
+      }
+      
+      process filter_geno_SNP_INDEL {
+          input:
+          tuple path(genoSNP_vcf), path(genoSNP_vcf_index), path(genoINDEL_vcf), path(genoINDEL_vcf_index)
+      
+          output:
+          path ("Trichuris_CI_cohort.geno.final.recode.vcf")
+      
+          script:
+          """
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11
+          ml load VCFtools/0.1.16-GCC-10.3.0
+      
+          gatk VariantFiltration \
+          -R ${params.reference} \
+          --variant ${genoSNP_vcf} \
+          --filter-expression ' QUAL < 35 || QD < 1.3 || MQ < 28.76 || FS > 50.5 || SOR > 2.30 || MQRankSum < -4.261 || ReadPosRankSum < -1.421 ' \
+          --filter-name "SNP_filtered" \
+          -O Trichuris_CI_cohort.genoSNP.filtered.vcf
+          
+          gatk VariantFiltration \
+          -R ${params.reference} \
+          --variant ${genoINDEL_vcf} \
+          --filter-expression ' QUAL < 32 || QD < 0.5 || FS > 30.1 || ReadPosRankSum < -1.836 ' \
+          --filter-name "INDEL_filtered" \
+          -O Trichuris_CI_cohort.genoINDEL.filtered.vcf;
+          
+          gatk MergeVcfs \
+          -I Trichuris_CI_cohort.genoSNP.filtered.vcf \
+          -I Trichuris_CI_cohort.genoINDEL.filtered.vcf \
+          -O Trichuris_CI_cohort.genoMERGED.filtered.vcf;
+          
+          gatk VariantFiltration \
+          -R ${params.reference} \
+          --variant Trichuris_CI_cohort.genoMERGED.filtered.vcf \
+          --genotype-filter-expression ' DP < 3 '  \
+          --genotype-filter-name "DP_genotype_3" \
+          --output Trichuris_CI_cohort.geno.genotype_filtered.vcf;
+          
+          gatk SelectVariants \
+          -R ${params.reference} \
+          --variant Trichuris_CI_cohort.geno.genotype_filtered.vcf \
+          --set-filtered-gt-to-nocall \
+          --output Trichuris_CI_cohort.geno.genotype_filtered_nocall.vcf;
+          
+          vcftools \
+          --vcf Trichuris_CI_cohort.geno.genotype_filtered_nocall.vcf \
+          --remove-filtered-geno-all \
+          --remove-filtered-all \
+          --min-alleles 2 \
+          --max-alleles 2 \
+          --maf 0.02 \
+          --recode \
+          --recode-INFO-all \
+          --out Trichuris_CI_cohort.geno.final
+          
+          vcftools \
+          --vcf Trichuris_CI_cohort.geno.final.recode.vcf \
+          --remove-indels
+          """
+      }
+
+
 
 ## Nextflow workflow <a name="NF1"></a>
 All processes were stitched together in one workflow
 
       workflow {
           read_pairs_ch = channel.fromFilePairs(params.reads, checkIfExists: true)
-          reference_mito_ch = channel.fromPath(params.mito_reference)
       
-          getorganelle(read_pairs_ch)
-          assembled_mito_ch = getorganelle.out
+          index(params.reference)
+          index_ch = index.out
+      
+          alignment(index_ch, read_pairs_ch)
+          aligned_ch = alignment.out
+      
+          flagstat(aligned_ch)
+          flagstat_ch = flagstat.out
+      
+          multiqc_flagstat(flagstat_ch.collect())
+      
+          sorting(aligned_ch)
+          sorted_filtered_ch = sorting.out
           
-          reverse_complement_mito_fasta(assembled_mito_ch)
-          reverse_complemented_mito_ch = reverse_complement_mito_fasta.out
+          mark_duplicates_spark(sorted_filtered_ch)
+          deduplicated_reads_ch = mark_duplicates_spark.out
+      
+          classify_gender(sorted_filtered_ch)
+          classify_gender_ch = classify_gender.out
           
-          mitoz_assembly(reverse_complemented_mito_ch)
-          mito_gbf_file_ch = mitoz_assembly.out
-      
-          adjust_mito_fasta(mito_gbf_file_ch)
-          adjusted_mito_ch = adjust_mito_fasta.out
+          merge_gender_data(classify_gender_ch.collect())
+          merge_gender_data_ch = merge_gender_data.out
           
-          mitoz_assembly_adjusted(adjusted_mito_ch)
-          mito_adjusted_gbf_file_ch = mitoz_assembly_adjusted.out	
+          initial_basecalling_BQSR(deduplicated_reads_ch)
+          first_raw_variants_ch = initial_basecalling_BQSR.out
           
-          mitoz_visualisation_ch = mito_adjusted_gbf_file_ch.join(read_pairs_ch)
+          initial_SNP_BQSR(first_raw_variants_ch)
+          SNPs_for_BQSR_ch = initial_SNP_BQSR.out
+      
+          initial_INDEL_BQSR(first_raw_variants_ch)
+          INDELs_for_BQSR_ch = initial_INDEL_BQSR.out
+      
+          INDEL_SNP_BQSR_ch = SNPs_for_BQSR_ch.join(INDELs_for_BQSR_ch).join(deduplicated_reads_ch)
+      
+          BQSR(INDEL_SNP_BQSR_ch)
+          BQSR_bam_ch = BQSR.out
+      
+          GVCF(BQSR_bam_ch)
+          GVCF_ch = GVCF.out
           
-          mitoz_visualisation(mitoz_visualisation_ch)
-          mitoz_visualitation_new_ch = mitoz_visualisation.out
+          merge_GVCF(GVCF_ch.map { it[0] }.collect(), GVCF_ch.map { it[1] }.collect())
+          merged_GVCF_ch = merge_GVCF.out
       
-          mafft_new_sequences(mitoz_visualitation_new_ch.map { it[3] }.collect())
+          genotyping(merged_GVCF_ch)
+          genotyped_merged_vcf_ch = genotyping.out
       
-          extract_cds_mito_fasta(mitoz_visualitation_new_ch)
-          cds_adjusted_mito_ch = extract_cds_mito_fasta.out
+          select_geno_SNP_INDEL(genotyped_merged_vcf_ch)
+          geno_SNP_INDEL_ch = select_geno_SNP_INDEL.out
+          
+           make_table_geno_SNP_INDEL(geno_SNP_INDEL_ch)
+           make_table_geno_SNP_INDEL_ch = make_table_geno_SNP_INDEL.out
       
-          mitoz_assembly_cds(cds_adjusted_mito_ch)
-      
-          mito_ref_prep(reference_mito_ch)
-          mito_ref_gbf_ch = mito_ref_prep.out
-      
-          adjust_mito_ref_fasta(mito_ref_gbf_ch)
-          adjusted_mito_ref_ch = adjust_mito_ref_fasta.out
-      
-          mitoz_ref_assembly_adjusted(adjusted_mito_ref_ch)
-          mitoz_ref_assembly_adjusted_ch = mitoz_ref_assembly_adjusted.out
-      
-          extract_cds_ref_mito_fasta(mitoz_ref_assembly_adjusted_ch)
-          adjusted_mito_ref_cds_ch = extract_cds_ref_mito_fasta.out
+           filter_geno_SNP_INDEL(geno_SNP_INDEL_ch)
+           filter_geno_SNP_INDEL_ch = filter_geno_SNP_INDEL.out
       }
+      
 
-## Phylogenetic inference <a name="pyhlo"></a>
-BEAST2 (version 2.7.5) was used for all phylogenetic inference with a pure birth process (Yule process). 
-Aligned concatenated nucleic acid sequences from all assembled and reference mitochondrial genomes were 
-treated as homochromous. The JC69 substitution model with gamma-distributed rate heterogeneity was used 
-(JC69 + Γ4) and a strict molecular clock was assumed. Trees and clock models were linked and all model 
-parameters were estimated jointly. A Markov Chain Monte Carlo was run for each analysis. Tracer 
-(version 1.7.2) was used to assess convergence and effective sample size (should be over 200).
-The percentage of samples discarded as burn-in was at least 10%. For the amino acid inferred species tree,
-2 assembled sequences of each subclade clade with a posterior distribution over 0.95 were selected at random.
-The mito REV substitution model was used and all genes were partitioned separately, allowing for different 
-rates for each gene. Effective sample size (ESS) was at least 900 for each of the inferred parameters. The 
-intraspecies phylogeny was inferred using a TN96 + Γ4 model. Each gene was partitioned separately and codon 
-positions 1 and 2 were partitioned separately to 3. The mean mutation rates of the genes and there codon positions 
-are provided in the supporting information and show a faster mutation rate for codon position 3 in all cases.
+## GWAS in PLINK <a name="plink"></a>
 
-Snippet to run BEAST2:
+Plink (version 1.9) was used to conduct the genome wide association study. A principal component analysis
+ (PCA) was conducted to account for population stratification. The PCA together with 
+information on worm-sex was used in the linear regression option in PLINK. The R package 
+ qqman was used to visualize the results.
 
-      ml load beagle-lib/3.1.2-GCCcore-10.3.0  
-      /*/beast/bin/beast -overwrite -threads 32 concatenated_JC69_model_for_rate.xml
 
-Snippet to run Treeannotator, using an older BEAST version:
+      plink --vcf /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/VCF_Annotation_pipeline/run1/Trichuris_CI_cohort_geno_final_recode_test.ann.vcf --make-bed --out /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/runsnpeff_new_genome_plink --double-id --allow-extra-chr;
+      
+      
+      plink   --allow-extra-chr \
+        --allow-no-sex \
+        --bfile /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/runsnpeff_new_genome_plink \
+        --make-bed \
+        --out /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_pheno \
+        --pheno /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/First_genome/Main_Phenotype_File.txt ;
+        
+      plink   --allow-extra-chr \
+        --bfile /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_pheno \
+        --make-bed \
+        --out /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_sex \
+        --update-sex /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/First_genome/Main_Phenotype_File_sex.txt ;
+      
+      plink   --allow-extra-chr \
+        --assoc \
+        --bfile /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_sex \
+        --out /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_assoc ;
+        
+      
+      plink   --allow-extra-chr \
+        --bfile /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_sex \
+        --make-bed \
+        --out /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_sex_filt \
+        --geno 0.05 --mind --maf 0.05 --hwe 0.001 ;
+      
+      plink   --allow-extra-chr \
+        --bfile /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_sex_filt \
+        --pca \
+        --allow-no-sex \
+        --mind \
+        --out /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_sex_filt_pca ;
+      
+      
+      plink --allow-extra-chr \
+        --bfile /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_sex_filt \
+        --covar /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_added_sex_filt_pca.eigenvec \
+        --covar-number 1 \
+        --logistic \
+        --out /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/results_vcf/playground/Third_genome_snpeff/run5eff_assoc_with_pca \
+        --allow-no-sex ;
 
-      ml load Beast/2.6.6-foss-2018b
-      treeannotator -lowMem concatenated_JC69_model_for_rate-aligned_merged_mitochondria.trees concatenated_JC69_model_for_rate.tree
+R-Script using qq-man package. Briefly, gender was taken into account and population stratification. A linear 
+regression model was chosen, although we also ran a logistical regression model.
 
-XML and log-files are provided in corresponding folders.
+Running the GWAS with the gender information served as a positive control of the pipeline.
+
+
+
+      library(qqman)
+      library(tidyverse)
+      
+      par(mfrow = c(3, 1), mar = c(2, 6, 2, 1))
+      
+      
+      
+      
+      gwas_results_female_male <- read.table("2runsnpeff_missense_assoc.assoc", header = TRUE, stringsAsFactors = FALSE)
+      threshold=1e-5
+      
+      #SNP's to filter out
+      SNP_female_male <- gwas_results_female_male$SNP[gwas_results_female_male$P < threshold]
+      
+      #Load df and filter out SNP's
+      gwas_results <- read.table("runsnpeff_missense_assoc_linear_with_pca.assoc", header = TRUE, stringsAsFactors = FALSE)
+      
+      gwas_results$CHR <- as.integer(sub(".*scaffold([0-9]+)", "\\1", gwas_results$CHR))
+      gwas_results <- gwas_results[ , c("SNP", "CHR", "BP", "P")]
+      gwas_results <- gwas_results %>%
+        filter(!is.na(BP) & is.finite(BP) & !is.na(P) & is.finite(P))
+      
+      gwas_results_filtered <- gwas_results[!gwas_results$SNP %in% SNP_female_male, ]
+      
+      
+      #load duplications
+      gene_regions <- as.data.frame(read.csv("combined_fasta_results.csv")) 
+      gene_regions$Scaffold <- as.numeric(gene_regions$Scaffold)
+      
+      
+      merged_data <- gwas_results_filtered %>%
+        # Expand GWAS data by all gene regions (cartesian product)
+        expand_grid(gene_regions) %>%
+        # Filter to retain only matching scaffolds where BP is within Start and Stop
+        filter(CHR == Scaffold, BP >= Start, BP <= Stop) %>%
+        # If no genes are matched, keep original SNP; otherwise, use Gene name
+        mutate(SNP = coalesce(Gene, SNP)) %>%
+        # Drop unnecessary columns
+        select(SNP, CHR = Scaffold, BP, P)
+      
+      final_data <- gwas_results_filtered %>%
+        # Anti-join to find all SNPs not in any gene region
+        anti_join(merged_data, by = c("CHR", "BP", "P")) %>%
+        # Combine with merged data which includes SNPs in gene regions
+        bind_rows(merged_data) %>%
+        # Arrange by chromosome and base pair position
+        arrange(CHR, BP)
+      
+      gwas_results1 <- final_data
+      gwas_results[gwas_results$BP == 26946418, ]
+      
+      gwas_results1$Gene <- sub(".*_g(\\d+)$", "g\\1", gwas_results1$SNP)
+      threshold=1e-4
+      highlight <- gwas_results1$SNP[gwas_results1$P < threshold]
+      highlight <- sub(".*_g(\\d+)$", "g\\1", highlight)
+      
+      filtered_gwas_results <- gwas_results1[gwas_results1$Gene %in% highlight, ]
+      filtered_gwas_results$SNP
+      highlight <- filtered_gwas_results$SNP
+      manhattan(gwas_results1,
+                chr = "CHR",             
+                bp = "BP",               
+                p = "P",                 
+                snp = "SNP",             
+                xlab = "",
+                ylim = c(0, 7), 
+                main = "Suggestive associations (top), highly duplicated genes (middle), genes associated with ivermectin resistance (bottom)",
+                highlight = highlight,
+                suggestiveline = -log10(1e-4), 
+                genomewideline = -log10(1e-7),
+                cex.axis = 2,
+                cex.lab = 2,
+                cex.main = 2
+                )
+      
+      abline(v = 21250000, col = "grey15", lwd = 2, lty = 2)
+      abline(v = 53380673, col = "grey15", lwd = 2, lty = 2)
+      abline(v = 75600000, col = "grey15", lwd = 2, lty = 2)
+      
+      
+      
+      
+      gwas_results_female_male <- read.table("2runsnpeff_missense_assoc.assoc", header = TRUE, stringsAsFactors = FALSE)
+      threshold=1e-5
+      
+      #SNP's to filter out
+      SNP_female_male <- gwas_results_female_male$SNP[gwas_results_female_male$P < threshold]
+      
+      #Load df and filter out SNP's
+      gwas_results <- read.table("runsnpeff_missense_assoc_linear_with_pca.assoc", header = TRUE, stringsAsFactors = FALSE)
+      
+      gwas_results$CHR <- as.integer(sub(".*scaffold([0-9]+)", "\\1", gwas_results$CHR))
+      gwas_results <- gwas_results[ , c("SNP", "CHR", "BP", "P")]
+      gwas_results <- gwas_results %>%
+        filter(!is.na(BP) & is.finite(BP) & !is.na(P) & is.finite(P))
+      
+      #now filter the gwas_results df to drop all sex related SNP's
+      gwas_results_filtered <- gwas_results[!gwas_results$SNP %in% SNP_female_male, ]
+      
+      
+      #load duplications
+      gene_regions <- as.data.frame(read.csv("combined_fasta_results.csv")) 
+      gene_regions$Scaffold <- as.numeric(gene_regions$Scaffold)
+      
+      
+      merged_data <- gwas_results_filtered %>%
+        # Expand GWAS data by all gene regions (cartesian product)
+        expand_grid(gene_regions) %>%
+        # Filter to retain only matching scaffolds where BP is within Start and Stop
+        filter(CHR == Scaffold, BP >= Start, BP <= Stop) %>%
+        # If no genes are matched, keep original SNP; otherwise, use Gene name
+        mutate(SNP = coalesce(Gene, SNP)) %>%
+        # Drop unnecessary columns
+        select(SNP, CHR = Scaffold, BP, P)
+      
+      final_data <- gwas_results_filtered %>%
+        # Anti-join to find all SNPs not in any gene region
+        anti_join(merged_data, by = c("CHR", "BP", "P")) %>%
+        # Combine with merged data which includes SNPs in gene regions
+        bind_rows(merged_data) %>%
+        # Arrange by chromosome and base pair position
+        arrange(CHR, BP)
+      
+      gwas_results1 <- final_data
+      
+      gwas_results1$Gene <- sub(".*_g(\\d+)$", "g\\1", gwas_results1$SNP)
+      threshold=1e-4
+      
+      highlight <- gwas_results1$SNP[gwas_results1$P < threshold]
+      highlight <- sub(".*_g(\\d+)$", "g\\1", highlight)
+      
+      filtered_gwas_results <- gwas_results1[gwas_results1$Gene %in% highlight, ]
+      filtered_gwas_results$SNP
+      
+      
+      highlight2 <- c("b-tubulin_OG0000671", "Condensin_OG0000186","Kinesin_OG0000145", "Haspin_like_kinase_OG0000285",  "MAP65_ASE1_OG0000628", "TF_III_OG0000681")
+      
+      manhattan(gwas_results1,
+                chr = "CHR",             
+                bp = "BP",               
+                p = "P",                 
+                snp = "SNP",             
+                ylim = c(0, 7), 
+                highlight = highlight2,
+                suggestiveline = -log10(1e-4),  
+                genomewideline = -log10(1e-7),
+                cex.axis = 2,
+                cex.lab = 2
+      )
+      
+      
+      
+      
+      abline(v = 21250000, col = "grey15", lwd = 2, lty = 2)
+      abline(v = 53380673, col = "grey15", lwd = 2, lty = 2)
+      abline(v = 75600000, col = "grey15", lwd = 2, lty = 2)
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      gwas_results_female_male <- read.table("2runsnpeff_missense_assoc.assoc", header = TRUE, stringsAsFactors = FALSE)
+      threshold=1e-5
+      
+      #SNP's to filter out
+      SNP_female_male <- gwas_results_female_male$SNP[gwas_results_female_male$P < threshold]
+      
+      #Load df and filter out SNP's
+      gwas_results <- read.table("runsnpeff_missense_assoc_linear_with_pca.assoc", header = TRUE, stringsAsFactors = FALSE)
+      
+      gwas_results$CHR <- as.integer(sub(".*scaffold([0-9]+)", "\\1", gwas_results$CHR))
+      gwas_results <- gwas_results[ , c("SNP", "CHR", "BP", "P")]
+      gwas_results <- gwas_results %>%
+        filter(!is.na(BP) & is.finite(BP) & !is.na(P) & is.finite(P))
+      
+      #now filter the gwas_results df to drop all sex related SNP's
+      gwas_results_filtered <- gwas_results[!gwas_results$SNP %in% SNP_female_male, ]
+      # Filter out rows where CHR is 3
+      
+      
+      #load duplications
+      gene_regions <- as.data.frame(read.csv("combined_fasta_results.csv")) 
+      gene_regions$Scaffold <- as.numeric(gene_regions$Scaffold)
+      
+      
+      merged_data <- gwas_results_filtered %>%
+        # Expand GWAS data by all gene regions (cartesian product)
+        expand_grid(gene_regions) %>%
+        # Filter to retain only matching scaffolds where BP is within Start and Stop
+        filter(CHR == Scaffold, BP >= Start, BP <= Stop) %>%
+        # If no genes are matched, keep original SNP; otherwise, use Gene name
+        mutate(SNP = coalesce(Gene, SNP)) %>%
+        # Drop unnecessary columns
+        select(SNP, CHR = Scaffold, BP, P)
+      
+      final_data <- gwas_results_filtered %>%
+        # Anti-join to find all SNPs not in any gene region
+        anti_join(merged_data, by = c("CHR", "BP", "P")) %>%
+        # Combine with merged data which includes SNPs in gene regions
+        bind_rows(merged_data) %>%
+        # Arrange by chromosome and base pair position
+        arrange(CHR, BP)
+      
+      gwas_results1 <- final_data
+      gwas_results[gwas_results$BP == 26946418, ]
+      
+      
+      gwas_results1$Gene <- sub(".*_g(\\d+)$", "g\\1", gwas_results1$SNP)
+      threshold=1e-4
+      
+      genes_ivermectin_res <- c("g724", "g841", "g1463", "g12517")
+      
+      highlight3 <- genes_ivermectin_res
+      head(gwas_results1)
+      
+      filtered_gwas_results <- gwas_results1[gwas_results1$Gene %in% highlight3, ]
+      filtered_gwas_results$SNP
+      highlight3 <- filtered_gwas_results$SNP
+      
+      manhattan(gwas_results1,
+                chr = "CHR",             
+                bp = "BP",               
+                p = "P",                
+                snp = "SNP",     
+                xlab = "Scaffolds",
+                ylim = c(0, 7), 
+                highlight = highlight3,
+                suggestiveline = -log10(1e-4), 
+                genomewideline = -log10(1e-7),
+                cex.axis = 2,
+                cex.lab = 2
+      )
+      
+      abline(v = 21250000, col = "grey15", lwd = 2, lty = 2)
+      abline(v = 53380673, col = "grey15", lwd = 2, lty = 2)
+      abline(v = 75600000, col = "grey15", lwd = 2, lty = 2)
+
+
 
