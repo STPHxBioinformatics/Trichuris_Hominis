@@ -74,3 +74,13 @@ The mito REV substitution model was used and all genes were partitioned separate
 rates for each gene. Effective sample size (ESS) was at least 900 for each of the inferred parameters. The 
 intraspecies phylogeny was inferred using a TN96 + Γ4 model. Each gene was partitioned separately and codon 
 positions 1 and 2 were partitioned separately to 3. 
+
+
+## Genome wide association study <a name="GWAS"></a>
+### Visual overview
+
+![GWAS_overview](Overview_GWAS.PNG)
+
+### Methods
+For all sequencing, assembly and annotation pipelines Nextflow (version 23.04.1 build 5866) 
+was used with Java (version 11.0.3). Raw reads were first processed using [Trimmomatic (version 0.39)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4103590/).
