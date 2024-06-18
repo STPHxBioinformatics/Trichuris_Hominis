@@ -42,307 +42,240 @@ DSL 2 option was used with nextflow and directories of genomes and databases use
 
 
 ### Indexing assembled reference - process index <a name="index"></a>
-Getorganelle, version 1.7.7.0 was used to assemble mitochondrial genomes. Only circular mitochondrial genomes which were 
-assembled to completeness are processed further.
+BWA, version 0.7.17, and SAMtools, version 1.14, was used to index the assembled reference genome.
       
-      process getorganelle {
+      process index {
+          
+          input:
+          path(reference)
+      
+          output:
+          val(reference.baseName)
+      
+          script:
+          """
+          ml load BWA/0.7.17-GCC-10.3.0
+          ml load SAMtools/1.14-GCC-10.3.0
+          bwa index ${reference};
+          
+          samtools faidx ${reference};
+          samtools dict ${reference} > ${params.reference_path}.dict
+          """
+      }
+
+### Aligning to reference genome - process alignment <a name="align"></a>
+BWA, version 0.7.17, and SAMtools, version 1.14, was used to align trimmed illumina reads to the assembled reference genome.
+
+      process alignment {
           maxForks 60
       
-          input: 
+          input:
+          val(reference)
           tuple val(pair_id), path(reads)
           
-          output: 
-          tuple val(pair_id), path("${pair_id}.fasta"), optional: true
+          output:
+          tuple val(pair_id), path("${pair_id}.bam")
           
+          script:
+          readGroup = "@RG\\tID:${pair_id}\\tLB:${pair_id}\\tPL:ILLUMINA\\tPM:NOVASEQ\\tSM:${pair_id}"
+          """
+          ml load BWA/0.7.17-GCC-10.3.0
+          ml load SAMtools/1.14-GCC-10.3.0
+          bwa mem \
+          -t 4 $params.reference \
+          -R \"${readGroup}\" \
+          ${reads[0]} \
+          ${reads[1]} | samtools view --threads 4 -b - \
+          > ${pair_id}.bam
+          """
+      }
+
+### Sorting and filtering bam file - process sorting <a name="sort"></a>
+Bam file was sorted using SAMtools, version 1.14.
+
+      process sorting {
+          maxForks 20
+      
+          input:
+          tuple val(pair_id), path(reads)
+      
+          output:
+          tuple val(pair_id), path("${pair_id}_filtered.bam")
+      
+          script:
+          """
+          ml load SAMtools/1.14-GCC-10.3.0
+          samtools sort -o ${pair_id}_sorted.bam $reads;
+          samtools view -F 4 -b -o ${pair_id}_filtered.bam ${pair_id}_sorted.bam;
+          samtools index ${pair_id}_filtered.bam ${pair_id}_filtered.bam.bai
+          """
+      }
+
+### QC flagstat, Kraken - process flagstat <a name="flagstat"></a>
+SAMtools version 1.14, MultiQC version 1.11, and Kraken2 version 2.1.1 was used to generate QC files. QC files are located in
+the QC files folder.
+
+      process flagstat {
+          maxForks 20
+          
+          input:
+          tuple val(pair_id), path(reads)
+      
+          output: 
+          file("${pair_id}.flagstat")
+      
+          script:
+          """
+          ml load SAMtools/1.14-GCC-10.3.0
+          samtools flagstat ${reads} > ${pair_id}.flagstat
+          """
+      }
+      
+      process multiqc_flagstat {
+          publishDir "$params.flagstat_outputrun2", mode: 'copy'
+      
+          input:
+          file(flagstat)
+      
+          output:
+          file "multiqc_report_flagstat.html"
+          
+          script:
+          """
+          ml load MultiQC/1.11-foss-2018b-Python-3.6.6
+          multiqc .;
+          mv multiqc_report.html multiqc_report_flagstat.html
+          """
+      }
+      
+      process kraken2_impurities {
+          maxForks 2
+          
+          input:
+          tuple val(pair_id), path(reads)
+          
+          output:
+          file("${pair_id}_kraken2report")
+          
+          script:
+          """
+          ml load Kraken2/2.1.1-foss-2018b-Perl-5.28.0
+          kraken2 \
+          --db $params.path_kraken2_db \
+          --report ${pair_id}_kraken2report \
+          --paired ${reads[0]} ${reads[1]}
+          """
+      }
+      
+      process multiqc_kraken2 {
+          publishDir "$params.flagstat_output*", mode: 'copy'
+      
+          input:
+          file(kraken2)
+      
+          output:
+          file "multiqc_report_kraken2.html"
+          
+          script:
+          """
+          ml load MultiQC/1.11-foss-2018b-Python-3.6.6
+          multiqc .;
+          mv multiqc_report.html multiqc_report_kraken2.html
+          """
+      }
+
+### Mark duplicates - process mark_duplicates_spark <a name="duplicates"></a>
+Duplicated reads are marked for basecalling.
+
+      process mark_duplicates_spark {
+          maxForks 5
+          
+          input:
+          tuple val(pair_id), path(reads)
+      
+          output:
+          tuple val(pair_id), path("${pair_id}_sorted_dedup.bam")
+          
+          script:
+          """
+          ml purge
+          ml load Java/8u212b03
+          ml load GATK/4.2.6.1-foss-2018b-Java-1.8
+          gatk MarkDuplicatesSpark \
+          -I ${reads} \
+          -M ${pair_id}_dedup_metrics.txt \
+          -O ${pair_id}_sorted_dedup.bam 
+          """
+      }
+
+
+### Classify gender using coverage - process classify_gender <a name="gender"></a>
+Gender was classified using the coverage ratio of the largest X-chromosome scaffold. To the largest Scaffold on Chromosome 2.
+Gender data is provided in the QC folder.
+
+      process classify_gender {
+          input:
+          tuple val(pair_id), path(bam_file)
+      
+          output:
+          path("${pair_id}.txt")
+      
+          script:
+          """
+          ml load SAMtools/1.16.1-GCC-10.3.0
+          samtools index ${bam_file};
+          cov_1="\$(samtools coverage -r TTRE_chr1_scaffold1 ${bam_file} | awk 'NR==2 {print \$7}')";
+          cov_2="\$(samtools coverage -r TTRE_chr2_scaffold39 ${bam_file} | awk 'NR==2 {print \$7}')";
+          ratio=\$(echo "\$cov_1 / \$cov_2" | bc -l)
+          echo "\$cov_1\n\$cov_2\n\$ratio" >> ${pair_id}.txt
+          """
+      
+      }
+      
+      process merge_gender_data {
+          input:
+          path(gender_files)
+      
+          output:
+          path("merged_coverage.txt")
+      
           script:
           """
           ml load Python/3.9.5-GCCcore-10.3.0
-          ${params.path_getorganelle} \
-          -1 ${reads[0]}\
-          -2 ${reads[1]}\
-          -o ${pair_id}_GetOrganelle\
-          -F animal_mt -t 4 --overwrite --reverse-lsc;
-          
-          if [ -f ${pair_id}_GetOrganelle/animal_mt.K115.complete.graph1.1.path_sequence.fasta ]; then
-      
-          cp ${pair_id}_GetOrganelle/animal_mt.K115.complete.graph1.1.path_sequence.fasta ./${pair_id}.fasta
-      
-          fi
+          python /scicore/home/schpie00/baer0006/Trichuris_Trichiura_CI/analysis_pipeline/merge_coverage.py
           """
+      
       }
 
-### Identify and flip reverse complement sequences - process reverse_complement_mito_fasta <a name="flip"></a>
-As a result of the software the reverse complement of the mitochondrial genomes is generated. A custom python script 
-identifies reverse complement sequences and flips them around.
 
-      process reverse_complement_mito_fasta {
+
+### Initial basecalling for BQSR - process initial_basecalling_BQSR <a name="initial_BQSR"></a>
+Basecalling was done in a first round to obtain a subset of very likely SNP's for base quality score recalibration.
+Plots were generated for QUAL, DP, QD, FS, MQ, MQRankSum, SQR, ReadPosRankSum. This code is largely adapted from the 
+Doyle et al. paper on ancient and modern Trichuris
+![Plot_Stats](plot_nuclear_variant_summaries.png)
+![Plot_Stats](table_nuclear_variant_quantiles.png)
+
+      process initial_basecalling_BQSR {
+          maxForks 56
+          
           input:
-          tuple val(pair_id), path(mito_fasta)
+          tuple val(pair_id), path(reads)
       
           output:
-          tuple val(pair_id), path("${pair_id}_reversed.fasta")
+          tuple val(pair_id), path("${pair_id}_first_raw_variants.vcf")
           
           script:
           """
-          ml load Python/3.9.5-GCCcore-10.3.0-bare
-          
-          python /*/Mitobim_test/rearrange_mito_reverse_complement.py ${mito_fasta}
+          ml load  GATK/4.2.4.1-GCCcore-10.3.0-Java-11 
+          gatk HaplotypeCaller \
+          -R ${params.reference} \
+          -I ${reads} \
+          --heterozygosity 0.015 \
+              --indel-heterozygosity 0.01 \
+          -O ${pair_id}_first_raw_variants.vcf
           """
       }
-
-Python script
-
-      import argparse
-      from Bio.Seq import Seq
-      
-      
-      def modify_fasta_file(fasta_file):
-          with open(fasta_file, "r") as file:
-              lines = file.readlines()
-      
-          header = lines[0].strip()
-          seq = Seq("".join(lines[1:]).replace("\n", ""))
-      
-          # Reverse complement sequence
-          reversed_complement_sequence = str(seq.reverse_complement())
-      
-          # Write the adjusted sequence to a new file
-          reversed_file = fasta_file.replace(".fasta", "_reversed.fasta")
-          with open(reversed_file, "w") as file:
-              file.write(f"{header}\n{reversed_complement_sequence}")
-      
-          return reversed_file
-      
-      # Provide the path to your GetOrganelle-generated mitochondrial genome in FASTA format
-      
-      parser = argparse.ArgumentParser()
-      parser.add_argument("fasta_file", help="Path to the FASTA file")
-      args = parser.parse_args()
-      
-      reversed_fasta_file = modify_fasta_file(args.fasta_file)
-      print("Adjusted FASTA file:", reversed_fasta_file)
-
-### Mitochondrial annotation using MitoZ - process mitoz_assembly <a name="MitoZ1"></a>
-MitoZ, version 3.6, was used to annotate the mitochondrial genomes. In cases where the reversed complement was present the
-mitochondrial genome was flipped again and re-annotated.
-
-      process mitoz_assembly {
-         maxForks 60
-      
-         input:
-         tuple val(pair_id), path(mito_fasta)
-          
-         output:
-         tuple val(pair_id), path("${pair_id}_reversed.fasta"), path("MitoZ_${pair_id}_tmp_header.fasta_mitoscaf.fa.gbf")
-            
-         script:
-         def sampleID = pair_id.substring(30, pair_id.length() - 15).findAll( /\d+/ )*.toInteger()
-      
-         """
-         ml load GD/2.66-goolf-1.7.20-Perl-5.22.2;
-         ml load SAMtools/1.7-goolf-1.7.20;
-         ml load BWA/0.7.17-goolf-1.7.20;
-         ml load Perl/5.22.2-goolf-1.7.20;
-      
-      
-         sed -e "s/^>.*/>${sampleID} topology=circular/" ${mito_fasta} > ${pair_id}_tmp_header.fasta;
-      
-         /*/mitoz/MitoZ_v3.6.sif mitoz annotate --clade Nematoda --fastafiles ${pair_id}_tmp_header.fasta --outprefix MitoZ;
-      
-      
-         if grep -B 1 'COX1' MitoZ.${pair_id}_tmp_header.fasta.result/MitoZ_${pair_id}_tmp_header.fasta_mitoscaf.fa.gbf | grep -q 'complement'; then \
-          
-         ml purge; ml load Python/3.9.5-GCCcore-10.3.0;
-          
-         python /*/rearrange_mito_reverse_complement.py ${pair_id}_tmp_header.fasta;
-          
-         ml purge;
-      
-         ml load GD/2.66-goolf-1.7.20-Perl-5.22.2;
-         ml load SAMtools/1.7-goolf-1.7.20;
-         ml load BWA/0.7.17-goolf-1.7.20;
-         ml load Perl/5.22.2-goolf-1.7.20;
-      
-         /*/mitoz/MitoZ_v3.6.sif mitoz annotate --clade Nematoda --fastafiles ${pair_id}_tmp_header_reversed.fasta --outprefix MitoZ;
-         cp MitoZ.${pair_id}_tmp_header_reversed.fasta.result/MitoZ_${pair_id}_tmp_header_reversed.fasta_mitoscaf.fa.gbf ./MitoZ_${pair_id}_tmp_header.fasta_mitoscaf.fa.gbf;
-         mv ${pair_id}_tmp_header_reversed.fasta ${pair_id}_reversed.fasta;
-         else mv ${pair_id}_tmp_header.fasta ${pair_id}_reversed.fasta;
-         cp MitoZ.${pair_id}_tmp_header.fasta.result/MitoZ_${pair_id}_tmp_header.fasta_mitoscaf.fa.gbf ./MitoZ_${pair_id}_tmp_header.fasta_mitoscaf.fa.gbf; fi
-         """
-      }
-
-### Startingpoint of mitochondrial genome is set to the COX1 gene - process adjust_mito_fasta <a name="MitoZ2"></a>
-The starting point of the mitochondrial genome was set to the COX1 gene using a custom python script.
-
-      process adjust_mito_fasta {
-         input:
-         tuple val(pair_id), path(mito_fasta), path(mito_gbf)
-      
-         output:
-         tuple val(pair_id), path("${pair_id}_reversed_adjusted.fasta")
-          
-         script:
-         """
-         ml load Python/3.9.5-GCCcore-10.3.0-bare
-          
-         starting_postition="\$(grep -B 1 'COX1' ${mito_gbf} | grep ' gene' | grep -oP '\\d+(?=\\.\\.)' | tail -1)";
-          
-         python /*/rearrange_mito.py ${mito_fasta} "\$(grep -B 1 'COX1' ${mito_gbf} | grep ' gene' | grep -oP '\\d+(?=\\.\\.)' | tail -1)"
-         """
-      }
- 
-python script
-
-      import argparse
-      
-      
-      def modify_fasta_file(fasta_file, cox1_start_position):
-          with open(fasta_file, "r") as file:
-              lines = file.readlines()
-      
-          header = lines[0].strip()
-          sequence = "".join(lines[1:]).replace("\n", "")
-      
-          # Circularize the mitochondrial sequence with the COX1 gene at the desired starting position
-          adjusted_sequence = sequence[cox1_start_position:] + sequence[:cox1_start_position]
-      
-          # Write the adjusted sequence to a new file
-          adjusted_file = fasta_file.replace(".fasta", "_adjusted.fasta")
-          with open(adjusted_file, "w") as file:
-              file.write(f"{header}\n{adjusted_sequence}")
-      
-          return adjusted_file
-      
-      # Provide the path to your GetOrganelle-generated mitochondrial genome in FASTA format
-      fasta_file = "Mitobim_test_original.fasta"
-      parser = argparse.ArgumentParser()
-      parser.add_argument("fasta_file", help="Path to the FASTA file")
-      parser.add_argument("starting_position", type=int, help="Starting position of the COX1 gene")
-      args = parser.parse_args()
-      
-      adjusted_fasta_file = modify_fasta_file(args.fasta_file, args.starting_position)
-      print("Adjusted FASTA file:", adjusted_fasta_file) 
-
-### Re-annotation of newly adjusted starting position - process mitoz_assembly_adjusted <a name="MitoZ3"></a>
-Mitochondrial genome is re-annotated after adjustment to COX1 as starting position.
-
-      process mitoz_assembly_adjusted {
-          maxForks 60
-      
-          input:
-          tuple val(pair_id), path(mito_fasta)
-          
-          output:
-          tuple val(pair_id), path("MitoZ.${pair_id}_tmp_header.fasta.result/MitoZ_${pair_id}_tmp_header.fasta_mitoscaf.fa.gbf"), path("${pair_id}.fasta")
-      
-          script:
-          def sampleID = pair_id.substring(30, pair_id.length() - 15).findAll( /\d+/ )*.toInteger()
-      
-          """
-          ml load GD/2.66-goolf-1.7.20-Perl-5.22.2;
-          ml load SAMtools/1.7-goolf-1.7.20;
-          ml load BWA/0.7.17-goolf-1.7.20;
-          ml load Perl/5.22.2-goolf-1.7.20;
-          
-      
-          sed -e "s/^>.*/>${sampleID} topology=circular/" ${mito_fasta} > ${pair_id}_tmp_header.fasta;
-      
-          /*/mitoz/MitoZ_v3.6.sif mitoz annotate --clade Nematoda --fastafiles ${pair_id}_tmp_header.fasta --outprefix MitoZ;
-          
-          cp ${pair_id}_tmp_header.fasta ${pair_id}.fasta
-          """
-      }
-
-### Visualization of mitochondrial genomes using MitoZ - process mitoz_visualisation <a name="MitoZ4"></a>
-Mitochondrial genomes were visualized using MitoZ, including coverage plots in circos with the raw reads.
-
-      process mitoz_visualisation {
-          maxForks 60
-          stageInMode 'copy'
-          publishDir '/*/mitochondrial_baiting_and_analysis_pipeline/Results_samples/CDS_and_non_CDS/', mode: 'copy'
-          
-          input:
-          tuple val(pair_id), path(mito_gbf), path(final_fasta), path(reads)
-          
-          output:
-          tuple val(pair_id), path("${pair_id}_mito_circos.png"), path("${final_fasta}"), path("${mito_gbf}")
-      
-          script:
-          """
-          ml load GD/2.66-goolf-1.7.20-Perl-5.22.2;
-          ml load SAMtools/1.7-goolf-1.7.20;
-          ml load BWA/0.7.17-goolf-1.7.20;
-          ml load Perl/5.22.2-goolf-1.7.20;
-          singularity run /*/mitoz/MitoZ_v3.6.sif mitoz visualize \
-          --circos /*/circos-0.69-9/bin/circos \
-          --gb ${mito_gbf} --outdir ./results --run_map yes \
-          --fq1 ${reads[0]} \
-          --fq2 ${reads[1]};
-      
-          cp ./results/circos.png ./${pair_id}_mito_circos.png
-          """
-      }
-
-
-### Extraction of gene sequences and MAFFT alignment of individual genes - process mafft_new_sequences <a name="Mafft"></a>
-Coding sequences were extracted from the generated gbf files using a custom python script and saved by gene in the
- fasta format, before alignment with MAFFT.
-These sequences are only from human infecting *Trichuris* species without references.
-
-      process mafft_new_sequences {
-         input:
-         path(mito_gbf)
-      
-         script:
-         """
-         ls | grep "TRICHURISP-" | xargs rm -f;
-         ml load Python/3.9.5-GCCcore-10.3.0-bare
-         ml load MAFFT/7.490-GCC-10.3.0-with-extensions
-         cp /results_nucleic_acid_phylogeny/generate_nucleicacid_fastas.py ./
-         python generate_nucleicacid_fastas.py;
-         for file in *.fasta; do
-         sed -i 's/^>/>s/' "\$file";
-         sed -i 's/\\[//' "\$file";
-         sed -i 's/\\]//' "\$file";
-         mafft --auto "\$file" > "\$file"aligned.fasta
-         done 
-      
-      
-          """
-      }
-
-python script
-
-      from Bio import SeqIO
-      import os
-      
-      # Define the folder containing your GBF files
-      folder_path = "./"
-      
-      # Dictionary to store gene sequences
-      gene_sequences = {}
-      
-      # Process all GBF files in the folder
-      for file_name in os.listdir(folder_path):
-          if file_name.endswith(".gbf"):
-              file_path = os.path.join(folder_path, file_name)
-              for record in SeqIO.parse(file_path, "genbank"):
-                  for feature in record.features:
-                      if feature.type == "CDS" and "gene" in feature.qualifiers:
-                          gene_name = feature.qualifiers["gene"][0]
-                          gene_sequence = str(feature.location.extract(record).seq)
-                          if gene_name not in gene_sequences:
-                              gene_sequences[gene_name] = {}
-                          gene_sequences[gene_name][record.id] = gene_sequence
-      
-      # Create FASTA files for each gene
-      for gene, sequences in gene_sequences.items():
-          fasta_file_name = os.path.join(folder_path, f"{gene}.fasta")
-          with open(fasta_file_name, 'w') as fasta_file:
-              for taxon, sequence in sequences.items():
-                  fasta_file.write(f">{taxon}\n{sequence}\n")
-      
-      print("FASTA files have been created for each gene.")
 
 
 ### Extract coding sequences - process extract_cds_mito_fasta <a name="MitoZ6"></a>
