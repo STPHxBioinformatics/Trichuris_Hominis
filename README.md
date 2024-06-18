@@ -4,17 +4,18 @@ Author: Max Bär, max.baer[at]swisstph.ch
 
 ## Contents:
 This repository contains all code to reproduce the results and figures from the publication [Genetic makeup of *Trichuris hominibus*, a novel Trichuris species naturally infecting humans and displaying signs of resistance to drug treatment](https://www.biorxiv.org/content/10.1101/2024.06.11.598441v1).
-3 pipelines are presented, for the de-novo hybrid genome assembly, for the gene prediction and functional annotation of the 
-newly assembly genome and for the assembly and phylogenetic inference of approx. 700 individual mitogenomes of *T. resilentia*. Nextflow was the main language used
+4 pipelines are presented, for the de-novo hybrid genome assembly, for the gene prediction and functional annotation of the 
+newly assembly genome, for the assembly and phylogenetic inference of 752 individual mitogenomes of *T. hominibus*. Nextflow was the main language used
 to construct the pipelines and each code snippet is elaborated on in the respective README.md file in the sub-directories. All scripts were run on the SciCORE computing cluster at the University of Basel with most modules pre-installed.
 Many scripts were adapted from Stephen Doyle's project on ancient and modern *Trichuris* genomes ([Population genomics of ancient and modern Trichuris trichiura](https://github.com/stephenrdoyle/ancient_trichuris/tree/master))
  
 
 Table of contents
 
-1. [De-novo hybrid genome assembly](https://github.com/max-baer/Trichuris_Resilentia/tree/master/01_De-novo_hybrid_assembly)
-2. [Gene prediction and funtional annotation](https://github.com/max-baer/Trichuris_Resilentia/tree/master/02_De-novo_annotation_pipeline) 
-3. [Mitogenome assembly and phylogeny](https://github.com/max-baer/Trichuris_Resilentia/tree/master/03_Mitogenome_assembly_and_phylogeny) 
+1. [De-novo hybrid genome assembly](https://github.com/max-baer/Trichuris_Hominibus/tree/master/01_De-novo_hybrid_assembly)
+2. [Gene prediction and funtional annotation](https://github.com/max-baer/Trichuris_Hominibus/tree/master/02_De-novo_annotation_pipeline) 
+3. [Mitogenome assembly and phylogeny](https://github.com/max-baer/Trichuris_Hominibus/tree/master/03_Mitogenome_assembly_and_phylogeny) 
+4. [Genome wide association study](https://github.com/max-baer/Trichuris_Hominibus/tree/master/04_Genome_wide_association_study) 
 ___
 ## De-novo hybrid genome assembly <a name="annotation"></a>
 ### Visual overview
@@ -42,7 +43,7 @@ and [QUAST (version 5.0.2)](https://academic.oup.com/bioinformatics/article/34/1
 ### Methods
 Nextflow (version 23.04.1 build 5866) was used with Java (version 11.0.3). All available reference whole genomes of 
 Trichuris species and Trichinella spiralis were channeled into the pipeline containing the newly assembled genome
-of *T. resilentia* to run a de-novo gene prediction on all reference genomes and reduce methodological
+of *T. Hominibus* to run a de-novo gene prediction on all reference genomes and reduce methodological
 bias from gene prediction software. Repeat regions were masked using RepeatMasker (version 4.1.4) before channeling the
 genome to [BRAKER (version 3.0.6, Braker2 pipeline using the Metazoa protein database from OrthoDB 11)](https://academic.oup.com/nargab/article/3/1/lqaa108/6066535).
 Gene prediction statistics including exon and intron count, mean length and median length were gathered using a custom bash script. 
