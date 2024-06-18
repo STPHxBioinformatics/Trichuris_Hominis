@@ -4,7 +4,7 @@ Author: Max Bär, max.baer[at]swisstph.ch
 
 ## Contents:
 
-This section presents the code used for the assembly of *T. resilentia* mitogenomes and phylogenetic inference. It is presented by
+This section presents the code used for the assembly of *T. hominibus* mitogenomes and phylogenetic inference. It is presented by
 the individual nextflow processes which are combined in a final workflow or individual sections for further processing outside
 of Nextflow. The scripts were run on the SciCORE computing cluster at the University of Basel with most modules pre-installed.
 

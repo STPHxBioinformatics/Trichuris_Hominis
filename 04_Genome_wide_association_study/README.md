@@ -1,42 +1,47 @@
-# Mitochondrial assembly and phylogenetic inference
+# Genome wide association study 
 
 Author: Max Bär, max.baer[at]swisstph.ch
 
 ## Contents:
 
-This section presents the code used for the assembly of *T. resilentia* mitogenomes and phylogenetic inference. It is presented by
-the individual nextflow processes which are combined in a final workflow or individual sections for further processing outside
+This section presents the code used for the genome wide association study of drug sensitive and non-sensitive *T. hominibus* populations.
+ It is presented by the individual nextflow processes which are combined in a final workflow or individual sections for further processing outside
 of Nextflow. The scripts were run on the SciCORE computing cluster at the University of Basel with most modules pre-installed.
 
 Table of contents
 
-1. [Mitochondrial assembly and annotation](#annotation)
+1. [Variant calling pipeline](#variants)
    1. [Nextflow settings](#settings)
-   2. [Mitochondrial assembly - process getorganelle](#assembly)
-   3. [Identify and flip reverse complement sequences - process reverse_complement_mito_fasta](#flip)
-   4. [Mitochondrial annotation using MitoZ - process mitoz_assembly](#MitoZ1)
-   5. [Startingpoint of mitochondrial genome is set to the COX1 gene - process adjust_mito_fasta](#MitoZ2)
-   6. [Re-annotation of newly adjusted starting position - process mitoz_assembly_adjusted](#MitoZ3)
-   7. [Visualization of mitochondrial genomes using MitoZ - process mitoz_visualisation](#MitoZ4)
-   8. [Extraction of gene sequences and MAFFT alignment of individual genes - process mafft_new_sequences](#Mafft)
-   9. [Extract coding sequences - process extract_cds_mito_fasta](#MitoZ6)
-   10. [Annotation and visualization of coding sequences as a QC - process mitoz_assembly_cds](#MitoZ7)
-   11. [Reference mitochondrial genome annotation - process adjust_mito_ref_fasta, mitoz_ref_assembly_adjusted, extract_cds_ref_mito_fasta](#MitoZ8)
+   2. [Indexing assembled reference - process index](#index)
+   3. [Aligning to reference genome - process alignment](#align)
+   4. [Sorting and filtering bam file - process sorting](#sort)
+   5. [QC flagstat, Kraken - process flagstat](#flagstat)
+   6. [Mark duplicates - process mark_duplicates_spark](#duplicates)
+   7. [Classify gender using coverage - process classify_gender](#gender)
+   8. [Initial basecalling for BQSR - process initial_basecalling_BQSR](#initial_BQSR)
+   9. [Initial hard filtering for BQSR - process initial_SNP_BQSR](#initial)
+   10. [BQSR - process BQSR](#BQSR)
+   11. [GVCF generation and merging - process GVCF](#GVCF)
+   12. [Genotyping and filtering](#geno)
 2. [Nextflow workflow](#NF1)
-3. [Phylogenetic inference](#pyhlo)
+3. [GWAS in PLINK](#plink)
 ___
-## Mitochondrial assembly and annotation <a name="annotation"></a>
-GetOrganelle was used to bait and reconstruct mitochondrial sequences from whole genome data.
+## Variant calling pipeline <a name="variants"></a>
+GATK was used to call variants.
 
 ### Nextflow environment variables <a name="settings"></a>
 DSL 2 option was used with nextflow and directories of genomes and databases used were defined outside of processes.
 
       nextflow.enable.dsl=2
-      params.reads = "/*/2023*/GFB-*TRI*_R{1,2}_001.fastq.gz"
-      params.path_getorganelle = "/*/GetOrganelle/get_organelle_from_reads.py"
-      params.mito_reference = "/*/Mitochondrial_references/*.fasta"
+      params.reads = "/*/GROUP/20230601_Raw_sequencing_Trichuris_whole_genome/2023*/GFB-*TRI*_R{1,2}_001.fastq.gz"
+      params.outdir = "/*/Trichuris_Hominibus_CI/Nextflow/"
+      params.reference = "/*/analysis_pipeline/Reference/Trichuris_cote_divoire_freeze.fasta"
+      params.reference_path = "/*/analysis_pipeline/Reference/Trichuris_cote_divoire_freeze"
+      params.path_kraken2_db = "/*/data/managed/.store/kraken_191029/"
+      params.flagstat_output = "/*/analysis_pipeline/flagstat/"
 
-### Mitochondrial assembly - process getorganelle <a name="assembly"></a>
+
+### Indexing assembled reference - process index <a name="index"></a>
 Getorganelle, version 1.7.7.0 was used to assemble mitochondrial genomes. Only circular mitochondrial genomes which were 
 assembled to completeness are processed further.
       

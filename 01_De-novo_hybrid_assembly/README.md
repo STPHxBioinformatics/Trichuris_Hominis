@@ -4,7 +4,7 @@ Author: Max Bär, max.baer[at]swisstph.ch
 
 ## Contents:
 
-This section presents the code used for the de-novo hybrid assembly of *T. resilentia*. It is presented by the individual
+This section presents the code used for the de-novo hybrid assembly of *T. hominibus*. It is presented by the individual
 nextflow processes which are combined in a final workflow. This script was run on the SciCORE computing cluster at the University
 of Basel with most modules pre-installed. Many scripts were adapted from Stephen Doyle's project on ancient and modern *Trichuris* 
 genomes. [Population genomics of ancient and modern Trichuris trichiura](https://github.com/stephenrdoyle/ancient_trichuris/tree/master)
