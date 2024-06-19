@@ -90,7 +90,7 @@ were used to index the assembled reference genome, and align, sort and filter ra
 were used as QC tools. The standard [GATK (version 4.2.6.1)]( https://gatk.broadinstitute.org/hc/en-us/categories/360002310591-Technical-Documentation)
 pipeline was followed for variant calling, base quality score recalibration (BQSR) and genotyping. Duplicates were marked,
 initial basecalling was conducted for BQSR, hard filtering was done after visualizing plots for QUAL, DP, QD, FS, MQ, 
-MQRankSum, SQR, ReadPosRankSum. VCF’s of all worms were merged, and a joint genotyping was conducted to generate the final
+MQRankSum, SQR, ReadPosRankSum. gVCF’s of all worms were merged, and a joint genotyping was conducted to generate the final
 VCF. Using this VCF the population stratification was examined with by PCA in
 [PLINK (version 1.9)]( https://www.cog-genomics.org/plink/). Next a positive control was ran using the gender data
 to confirm the pipeline in PLINK and the GWAS results for linear and logistical regressions. Finally SNP’s associated to
