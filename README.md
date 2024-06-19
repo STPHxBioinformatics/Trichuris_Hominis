@@ -82,5 +82,17 @@ positions 1 and 2 were partitioned separately to 3.
 ![GWAS_overview](Overview_GWAS.PNG)
 
 ### Methods
-For all sequencing, assembly and annotation pipelines Nextflow (version 23.04.1 build 5866) 
-was used with Java (version 11.0.3). Raw reads were first processed using [Trimmomatic (version 0.39)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4103590/).
+For all sequencing, assembly and annotation pipelines Nextflow (version 23.04.1 build 5866) was used with Java (version 11.0.3).
+Raw reads were first processed using [Trimmomatic (version 0.39)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4103590/).
+[BWA (version 0.7.17)](https://bio-bwa.sourceforge.net/bwa.shtml) and [SAMtools (version 1.14)](https://github.com/samtools/samtools)
+were used to index the assembled reference genome, and align, sort and filter raw reads. Flagstat and
+[Kraken2 (version 2.1.1)](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0)
+were used as QC tools. The standard [GATK (version 4.2.6.1)]( https://gatk.broadinstitute.org/hc/en-us/categories/360002310591-Technical-Documentation)
+pipeline was followed for variant calling, base quality score recalibration (BQSR) and genotyping. Duplicates were marked,
+initial basecalling was conducted for BQSR, hard filtering was done after visualizing plots for QUAL, DP, QD, FS, MQ, 
+MQRankSum, SQR, ReadPosRankSum. VCF’s of all worms were merged, and a joint genotyping was conducted to generate the final
+VCF. Using this VCF the population stratification was examined with by PCA in
+[PLINK (version 1.9)]( https://www.cog-genomics.org/plink/). Next a positive control was ran using the gender data
+to confirm the pipeline in PLINK and the GWAS results for linear and logistical regressions. Finally SNP’s associated to
+sex were filtered out and a final linear regression was conducted on the two populations of drug sensitive 
+and non-sensitive worms.
