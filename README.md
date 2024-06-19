@@ -91,8 +91,8 @@ were used as QC tools. The standard [GATK (version 4.2.6.1)]( https://gatk.broad
 pipeline was followed for variant calling, base quality score recalibration (BQSR) and genotyping. Duplicates were marked,
 initial basecalling was conducted for BQSR, hard filtering was done after visualizing plots for QUAL, DP, QD, FS, MQ, 
 MQRankSum, SQR, ReadPosRankSum. gVCF’s of all worms were merged, and a joint genotyping was conducted to generate the final
-VCF. Using this VCF the population stratification was examined with by PCA in
+VCF. Using this VCF the population stratification was examined by PCA in
 [PLINK (version 1.9)]( https://www.cog-genomics.org/plink/). Next a positive control was ran using the gender data
-to confirm the pipeline in PLINK and the GWAS results for linear and logistical regressions. Finally SNP’s associated to
+to confirm the pipeline in PLINK and assess the GWAS results for linear and logistical regressions. Finally SNP’s associated to
 sex were filtered out and a final linear regression was conducted on the two populations of drug sensitive 
 and non-sensitive worms.
