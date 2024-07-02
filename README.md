@@ -1,4 +1,4 @@
-# Genetic makeup of *Trichuris hominibus*, a novel Trichuris species naturally infecting humans and displaying signs of resistance to drug treatment
+# Genetic makeup of *Trichuris hominis*, a novel Trichuris species naturally infecting humans and displaying signs of resistance to drug treatment
 
 Author: Max Bär, max.baer[at]swisstph.ch
 
