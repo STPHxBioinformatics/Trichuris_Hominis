@@ -95,4 +95,4 @@ VCF. Using this VCF the population stratification was examined by PCA in
 [PLINK (version 1.9)]( https://www.cog-genomics.org/plink/). Next a positive control was ran using the gender data
 to confirm the pipeline in PLINK and assess the GWAS results for linear and logistical regressions. Finally SNP’s associated to
 sex were filtered out and a final linear regression was conducted on the two populations of drug sensitive 
-and non-sensitive wormz.
+and non-sensitive worms.
