@@ -5,7 +5,7 @@ Author: Max Bär, max.baer[at]swisstph.ch
 ## Contents:
 This repository contains all code to reproduce the results and figures from the publication [Genetic makeup of *Trichuris incognita*, a novel Trichuris species naturally infecting humans and displaying signs of resistance to drug treatment](https://www.biorxiv.org/content/10.1101/2024.06.11.598441v1).
 4 pipelines are presented, for the de-novo hybrid genome assembly, for the gene prediction and functional annotation of the 
-newly assembly genome, for the assembly and phylogenetic inference of 752 individual mitogenomes of *T. incognita*. Nextflow was the main language used
+newly assembly genome, for the assembly and phylogenetic inference of 747 individual mitogenomes of *T. incognita*. Nextflow was the main language used
 to construct the pipelines and each code snippet is elaborated on in the respective README.md file in the sub-directories. All scripts were run on the SciCORE computing cluster at the University of Basel with most modules pre-installed.
 Many scripts were adapted from Stephen Doyle's project on ancient and modern *Trichuris* genomes ([Population genomics of ancient and modern Trichuris trichiura](https://github.com/stephenrdoyle/ancient_trichuris/tree/master))
  
