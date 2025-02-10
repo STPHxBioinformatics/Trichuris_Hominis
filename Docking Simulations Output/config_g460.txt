@@ -1,0 +1,14 @@
+receptor = btub_g460_adj.pdbqt
+ligand = alben.pdbqt
+
+center_x = 4.0210001945495605  # from PyMOL output
+center_y = -4.5320000648498535
+center_z = 4.591999912261963
+
+size_x = 12  # Adjust based on your target area
+size_y = 12
+size_z = 12
+
+exhaustiveness = 30  # More exhaustive search
+num_modes = 30       # Number of binding modes to consider
+energy_range = 3    # Energy range in kcal/mol
