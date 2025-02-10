@@ -1,0 +1,79 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Phylo.io</title>
+            <meta charset="UTF-8">
+            <script src="https://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
+            <script type="text/javascript" src="https://cdn.rawgit.com/DessimozLab/phylo-io/5e89fafc3b1746b22da33c20b2af621d5807b6fb/www/js/jquery-2.1.4.min.js"></script>
+            <script type="text/javascript" src="https://cdn.rawgit.com/DessimozLab/phylo-io/9eae3d2af33f1f75bff78e393909dccfdd400650/www/js/treecompare.js"></script>
+            <script type="text/javascript" src="https://underscorejs.org/underscore-min.js"></script>
+            <script type="text/javascript" src="https://cdn.rawgit.com/DessimozLab/phylo-io/5e89fafc3b1746b22da33c20b2af621d5807b6fb/www/js/d3.min.js"></script>
+            <script type="text/javascript" src="https://cdn.rawgit.com/DessimozLab/phylo-io/5e89fafc3b1746b22da33c20b2af621d5807b6fb/www/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="https://cdn.rawgit.com/DessimozLab/phylo-io/5e89fafc3b1746b22da33c20b2af621d5807b6fb/www/js/FileSaver.min.js"></script>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/DessimozLab/phylo-io/5e89fafc3b1746b22da33c20b2af621d5807b6fb/www/css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/DessimozLab/phylo-io/5e89fafc3b1746b22da33c20b2af621d5807b6fb/www/css/bootstrap-theme.min.css">
+            <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/DessimozLab/phylo-io/5e89fafc3b1746b22da33c20b2af621d5807b6fb/www/css/style.css">
+            <style>
+
+            text {stroke: none;}
+
+            #help_modal_button {
+                position: fixed;
+                right: 10px;
+                margin-right: 10px; /*magic number */
+                bottom: 10px;
+                z-index: 99;
+            }
+
+            </style>
+        </head>
+        <body id="phylo">
+
+        <!-- Modal -->
+        <div class="modal  fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Tree profile help</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <embed src="https://cdn.rawgit.com/DessimozLab/pyham/fc01fb94/help.pdf" frameborder="0" width="100%" height="400px">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Button trigger modal -->
+        <button id="help_modal_button" type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">
+            Help
+        </button>
+
+
+
+        <div id="vis-container1" style="width: 100%; height: 100%;">
+        <div id="scale-1"> </div>
+        </div>
+        <script type="text/javascript">
+            var treecomp = TreeCompare().init({
+                enableScale: true,
+                scaleColor: "black",
+                showHistogramValues: true,
+                showHistogramSummaryValue: true
+            });
+            treeData = '{"name": "trichuris_muris_PRJEB126_genes/trichuris_trichiura_doyle_genes/trichuris_trichiura_PRJEB535_genes/trichuris_suis_PRJNA208416_genes/trichuris_suis_PRJNA179528_genes/trichuris_suis_PRJNA208415_genes/Trichuris_cote_divoire_freeze_genes/trichinella_spiralis_PRJNA12603_genes", "numberGenes": 1487, "numberEvents": null, "length": 0.01, "collapsed": "false", "evolutionaryEvents": false, "children": [{"name": "trichuris_muris_PRJEB126_genes/trichuris_trichiura_doyle_genes/trichuris_trichiura_PRJEB535_genes/trichuris_suis_PRJNA208416_genes/trichuris_suis_PRJNA179528_genes/trichuris_suis_PRJNA208415_genes/Trichuris_cote_divoire_freeze_genes", "numberGenes": 6388, "numberEvents": 4901, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 1395, "duplicated": 391, "gained": 4602, "lost": 0, "duplication": 299}, "children": [{"name": "trichuris_muris_PRJEB126_genes", "numberGenes": 20537, "numberEvents": 15775, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 4620, "duplicated": 4306, "gained": 11611, "lost": 813, "duplication": 3351}}, {"name": "trichuris_trichiura_doyle_genes/trichuris_trichiura_PRJEB535_genes/trichuris_suis_PRJNA208416_genes/trichuris_suis_PRJNA179528_genes/trichuris_suis_PRJNA208415_genes/Trichuris_cote_divoire_freeze_genes", "numberGenes": 10950, "numberEvents": 5192, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 5770, "duplicated": 1098, "gained": 4082, "lost": 315, "duplication": 795}, "children": [{"name": "trichuris_trichiura_doyle_genes/trichuris_trichiura_PRJEB535_genes", "numberGenes": 11628, "numberEvents": 7916, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 6869, "duplicated": 1656, "gained": 3103, "lost": 3619, "duplication": 1194}, "children": [{"name": "trichuris_trichiura_doyle_genes", "numberGenes": 11809, "numberEvents": 181, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 11515, "duplicated": 294, "gained": 0, "lost": 0, "duplication": 181}}, {"name": "trichuris_trichiura_PRJEB535_genes", "numberGenes": 11809, "numberEvents": 181, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 11515, "duplicated": 294, "gained": 0, "lost": 0, "duplication": 181}}]}, {"name": "trichuris_suis_PRJNA208416_genes/trichuris_suis_PRJNA179528_genes/trichuris_suis_PRJNA208415_genes/Trichuris_cote_divoire_freeze_genes", "numberGenes": 12281, "numberEvents": 2927, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 9766, "duplicated": 1069, "gained": 1446, "lost": 798, "duplication": 683}, "children": [{"name": "trichuris_suis_PRJNA208416_genes/trichuris_suis_PRJNA179528_genes/trichuris_suis_PRJNA208415_genes", "numberGenes": 13687, "numberEvents": 5454, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 9845, "duplicated": 1086, "gained": 2756, "lost": 2024, "duplication": 674}, "children": [{"name": "trichuris_suis_PRJNA208416_genes/trichuris_suis_PRJNA179528_genes", "numberGenes": 12646, "numberEvents": 3039, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 11586, "duplicated": 138, "gained": 922, "lost": 2040, "duplication": 77}, "children": [{"name": "trichuris_suis_PRJNA208416_genes", "numberGenes": 11224, "numberEvents": 5358, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 9061, "duplicated": 494, "gained": 1669, "lost": 3390, "duplication": 299}}, {"name": "trichuris_suis_PRJNA179528_genes", "numberGenes": 9755, "numberEvents": 6357, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 7975, "duplicated": 99, "gained": 1681, "lost": 4624, "duplication": 52}}]}, {"name": "trichuris_suis_PRJNA208415_genes", "numberGenes": 11884, "numberEvents": 6307, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 9365, "duplicated": 623, "gained": 1896, "lost": 4055, "duplication": 356}}]}, {"name": "Trichuris_cote_divoire_freeze_genes", "numberGenes": 13739, "numberEvents": 9230, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 7224, "duplicated": 3340, "gained": 3175, "lost": 3886, "duplication": 2169}}]}]}]}, {"name": "trichinella_spiralis_PRJNA12603_genes", "numberGenes": 13254, "numberEvents": 11767, "length": 0.01, "collapsed": "false", "evolutionaryEvents": {"retained": 1345, "duplicated": 417, "gained": 11492, "lost": 0, "duplication": 275}}]}';
+            var tree1 = treecomp.addTree(treeData, undefined, "single");
+            treecomp.viewTree(tree1.name, "vis-container1", "scale-1");
+            treecomp.addMainLegend(tree1.name);
+        </script>
+        </body>
+        </html>
+        
