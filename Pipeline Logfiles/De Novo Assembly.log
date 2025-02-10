@@ -1,0 +1,61 @@
+N E X T F L O W  ~  version 23.04.1
+Launching `De_novo_genome_construction.nf` [berserk_lamport] DSL2 - revision: 0a76d70513
+
+=============================================
+SWISS-TPH WHOLE-GENOME-PIPELINE: CAN'T RESIST
+=============================================
+
+Babedibubbi
+
+
+[-        ] process > assembly:chopper          -
+[-        ] process > assembly:kraken2_nanopore -
+
+[-        ] process > assembly:chopper               -
+[-        ] process > assembly:kraken2_nanopore      -
+[-        ] process > assembly:kraken2_illumina      -
+[-        ] process > assembly:masurca_run           -
+[-        ] process > assembly:linkage_group_MaSuRCA -
+[-        ] process > assembly:ragtag_correct        -
+[-        ] process > assembly:ragtag_scaffold       -
+[-        ] process > assembly:linkage_group_ragtag  -
+[-        ] process > assembly:quality_control       -
+
+[94/126cc6] process > assembly:chopper               [100%] 1 of 1, cached: 1 ✔
+[2b/e50b52] process > assembly:kraken2_nanopore      [100%] 1 of 1, cached: 1 ✔
+[01/beaae8] process > assembly:kraken2_illumina (1)  [100%] 1 of 1, cached: 1 ✔
+[1a/c47847] process > assembly:masurca_run (1)       [100%] 1 of 1, cached: 1 ✔
+[89/7c78a2] process > assembly:linkage_group_MaSu... [100%] 1 of 1, cached: 1 ✔
+[ef/47cd22] process > assembly:ragtag_correct (1)    [100%] 1 of 1, cached: 1 ✔
+[64/e47760] process > assembly:ragtag_scaffold (1)   [100%] 1 of 1, cached: 1 ✔
+[d5/d685c1] process > assembly:linkage_group_ragt... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > assembly:quality_control       -
+
+executor >  local (1)
+[94/126cc6] process > assembly:chopper               [100%] 1 of 1, cached: 1 ✔
+[2b/e50b52] process > assembly:kraken2_nanopore      [100%] 1 of 1, cached: 1 ✔
+[01/beaae8] process > assembly:kraken2_illumina (1)  [100%] 1 of 1, cached: 1 ✔
+[1a/c47847] process > assembly:masurca_run (1)       [100%] 1 of 1, cached: 1 ✔
+[89/7c78a2] process > assembly:linkage_group_MaSu... [100%] 1 of 1, cached: 1 ✔
+[ef/47cd22] process > assembly:ragtag_correct (1)    [100%] 1 of 1, cached: 1 ✔
+[64/e47760] process > assembly:ragtag_scaffold (1)   [100%] 1 of 1, cached: 1 ✔
+[d5/d685c1] process > assembly:linkage_group_ragt... [100%] 1 of 1, cached: 1 ✔
+[ec/d3ecb2] process > assembly:quality_control (1)   [  0%] 0 of 1
+
+executor >  local (1)
+[94/126cc6] process > assembly:chopper               [100%] 1 of 1, cached: 1 ✔
+[2b/e50b52] process > assembly:kraken2_nanopore      [100%] 1 of 1, cached: 1 ✔
+[01/beaae8] process > assembly:kraken2_illumina (1)  [100%] 1 of 1, cached: 1 ✔
+[1a/c47847] process > assembly:masurca_run (1)       [100%] 1 of 1, cached: 1 ✔
+[89/7c78a2] process > assembly:linkage_group_MaSu... [100%] 1 of 1, cached: 1 ✔
+[ef/47cd22] process > assembly:ragtag_correct (1)    [100%] 1 of 1, cached: 1 ✔
+[64/e47760] process > assembly:ragtag_scaffold (1)   [100%] 1 of 1, cached: 1 ✔
+[d5/d685c1] process > assembly:linkage_group_ragt... [100%] 1 of 1, cached: 1 ✔
+[ec/d3ecb2] process > assembly:quality_control (1)   [100%] 1 of 1 ✔
+Completed at: 03-Nov-2023 11:59:37
+Duration    : 13m 13s
+CPU hours   : 9.8 (97.8% cached)
+Succeeded   : 1
+Cached      : 8
+
+
