@@ -1,0 +1,830 @@
+----------------------------------------START Thu Nov  2 20:48:13 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/gatekeeper  -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore.BUILDING  -T  -F  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/mr.99.17.15.0.02.1.frg /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/mr.99.17.15.0.02.1.mates.frg > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore.err 2>&1
+----------------------------------------END Thu Nov  2 20:48:53 2023 (40 seconds)
+numFrags = 146733
+----------------------------------------START Thu Nov  2 20:48:53 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/initialTrim \
+ -log /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.initialTrim.log \
+ -frg /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ >  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.initialTrim.summary \
+ 2> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.initialTrim.err 
+----------------------------------------END Thu Nov  2 20:48:57 2023 (4 seconds)
+----------------------------------------START Thu Nov  2 20:48:57 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/meryl  -B -C -v -m 22 -memory 65536 -threads 32 -c 0  -L 2  -s /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore:chain  -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome-C-ms22-cm0 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/meryl.err 2>&1
+----------------------------------------END Thu Nov  2 20:51:55 2023 (178 seconds)
+----------------------------------------START Thu Nov  2 20:51:55 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/estimate-mer-threshold  -m /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome-C-ms22-cm0  > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome-C-ms22-cm0.estMerThresh.out 2> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome-C-ms22-cm0.estMerThresh.err
+----------------------------------------END Thu Nov  2 20:51:55 2023 (0 seconds)
+----------------------------------------START Thu Nov  2 20:51:55 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/meryl -Dt -n 250 -s /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome-C-ms22-cm0 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome.nmers.obt.fasta 2> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome.nmers.obt.fasta.err 
+----------------------------------------END Thu Nov  2 20:51:59 2023 (4 seconds)
+----------------------------------------START Thu Nov  2 20:51:59 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/meryl -Dt -n 250 -s /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome-C-ms22-cm0 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome.nmers.ovl.fasta 2> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-mercounts/genome.nmers.ovl.fasta.err 
+----------------------------------------END Thu Nov  2 20:52:02 2023 (3 seconds)
+Reset OBT mer threshold from  to 250.
+Reset OVL mer threshold from  to 250.
+----------------------------------------START Thu Nov  2 20:52:02 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/overlap_partition \
+ -g  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -bl 10000000 \
+ -bs 0 \
+ -rs 17172461 \
+ -rl 0 \
+ -o  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap_partition.err 2>&1
+----------------------------------------END Thu Nov  2 20:52:02 2023 (0 seconds)
+Created 174 overlap jobs.  Last batch '001', last job '000174'.
+----------------------------------------START CONCURRENT Thu Nov  2 20:52:02 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 1 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000001.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 2 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000002.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 3 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000003.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 4 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000004.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 5 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000005.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 6 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000006.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 7 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000007.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 8 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000008.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 9 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000009.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 10 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000010.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 11 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000011.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 12 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000012.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 13 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000013.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 14 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000014.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 15 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000015.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 16 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000016.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 17 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000017.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 18 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000018.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 19 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000019.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 20 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000020.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 21 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000021.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 22 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000022.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 23 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000023.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 24 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000024.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 25 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000025.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 26 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000026.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 27 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000027.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 28 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000028.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 29 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000029.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 30 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000030.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 31 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000031.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 32 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000032.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 33 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000033.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 34 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000034.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 35 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000035.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 36 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000036.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 37 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000037.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 38 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000038.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 39 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000039.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 40 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000040.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 41 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000041.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 42 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000042.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 43 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000043.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 44 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000044.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 45 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000045.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 46 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000046.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 47 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000047.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 48 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000048.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 49 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000049.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 50 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000050.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 51 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000051.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 52 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000052.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 53 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000053.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 54 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000054.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 55 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000055.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 56 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000056.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 57 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000057.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 58 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000058.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 59 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000059.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 60 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000060.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 61 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000061.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 62 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000062.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 63 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000063.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 64 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000064.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 65 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000065.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 66 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000066.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 67 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000067.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 68 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000068.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 69 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000069.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 70 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000070.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 71 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000071.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 72 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000072.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 73 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000073.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 74 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000074.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 75 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000075.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 76 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000076.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 77 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000077.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 78 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000078.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 79 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000079.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 80 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000080.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 81 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000081.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 82 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000082.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 83 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000083.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 84 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000084.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 85 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000085.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 86 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000086.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 87 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000087.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 88 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000088.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 89 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000089.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 90 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000090.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 91 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000091.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 92 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000092.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 93 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000093.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 94 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000094.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 95 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000095.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 96 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000096.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 97 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000097.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 98 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000098.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 99 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000099.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 100 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000100.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 101 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000101.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 102 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000102.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 103 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000103.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 104 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000104.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 105 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000105.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 106 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000106.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 107 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000107.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 108 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000108.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 109 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000109.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 110 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000110.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 111 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000111.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 112 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000112.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 113 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000113.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 114 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000114.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 115 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000115.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 116 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000116.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 117 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000117.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 118 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000118.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 119 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000119.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 120 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000120.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 121 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000121.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 122 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000122.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 123 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000123.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 124 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000124.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 125 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000125.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 126 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000126.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 127 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000127.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 128 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000128.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 129 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000129.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 130 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000130.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 131 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000131.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 132 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000132.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 133 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000133.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 134 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000134.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 135 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000135.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 136 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000136.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 137 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000137.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 138 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000138.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 139 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000139.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 140 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000140.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 141 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000141.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 142 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000142.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 143 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000143.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 144 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000144.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 145 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000145.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 146 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000146.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 147 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000147.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 148 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000148.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 149 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000149.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 150 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000150.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 151 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000151.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 152 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000152.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 153 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000153.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 154 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000154.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 155 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000155.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 156 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000156.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 157 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000157.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 158 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000158.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 159 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000159.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 160 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000160.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 161 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000161.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 162 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000162.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 163 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000163.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 164 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000164.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 165 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000165.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 166 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000166.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 167 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000167.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 168 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000168.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 169 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000169.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 170 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000170.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 171 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000171.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 172 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000172.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 173 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000173.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/overlap.sh 174 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap/000174.out 2>&1
+----------------------------------------END CONCURRENT Thu Nov  2 22:28:00 2023 (5758 seconds)
+----------------------------------------START Thu Nov  2 22:28:00 2023
+find -L /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim-overlap \( -name \*ovb.gz -or -name \*ovb \) -print > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.obtStore.list
+----------------------------------------END Thu Nov  2 22:28:00 2023 (0 seconds)
+----------------------------------------START Thu Nov  2 22:28:00 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/overlapStoreBuild  -obt  -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.obtStore.BUILDING  -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore  -M 65536 -L /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.obtStore.list > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.obtStore.err 2>&1
+----------------------------------------END Thu Nov  2 22:29:06 2023 (66 seconds)
+----------------------------------------START Thu Nov  2 22:29:06 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/finalTrim \
+  -G /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+  -O /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.obtStore \
+  -e 0.03 \
+  -E 1000 \
+  -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.finalTrim \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.finalTrim.err 2>&1
+----------------------------------------END Thu Nov  2 22:29:47 2023 (41 seconds)
+----------------------------------------START Thu Nov  2 22:29:47 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/chimera \
+ -G /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -O /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.obtStore \
+ -e 0.1 \
+ -E 1.5 \
+ -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.chimera \
+ > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/0-overlaptrim/genome.chimera.err 2>&1
+----------------------------------------END Thu Nov  2 22:29:56 2023 (9 seconds)
+No need to run meryl for OBT (genome.nmers.obt.fasta exists).
+No need to run meryl for OVL (genome.nmers.ovl.fasta exists).
+----------------------------------------START Thu Nov  2 22:29:56 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/overlap_partition \
+ -g  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -bl 10000000 \
+ -bs 0 \
+ -rs 17172461 \
+ -rl 0 \
+ -o  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap_partition.err 2>&1
+----------------------------------------END Thu Nov  2 22:29:56 2023 (0 seconds)
+Created 171 overlap jobs.  Last batch '001', last job '000171'.
+----------------------------------------START CONCURRENT Thu Nov  2 22:29:56 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 1 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000001.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 2 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000002.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 3 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000003.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 4 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000004.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 5 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000005.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 6 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000006.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 7 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000007.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 8 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000008.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 9 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000009.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 10 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000010.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 11 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000011.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 12 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000012.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 13 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000013.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 14 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000014.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 15 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000015.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 16 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000016.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 17 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000017.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 18 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000018.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 19 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000019.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 20 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000020.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 21 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000021.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 22 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000022.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 23 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000023.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 24 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000024.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 25 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000025.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 26 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000026.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 27 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000027.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 28 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000028.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 29 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000029.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 30 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000030.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 31 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000031.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 32 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000032.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 33 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000033.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 34 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000034.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 35 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000035.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 36 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000036.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 37 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000037.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 38 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000038.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 39 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000039.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 40 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000040.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 41 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000041.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 42 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000042.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 43 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000043.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 44 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000044.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 45 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000045.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 46 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000046.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 47 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000047.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 48 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000048.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 49 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000049.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 50 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000050.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 51 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000051.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 52 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000052.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 53 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000053.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 54 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000054.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 55 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000055.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 56 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000056.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 57 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000057.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 58 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000058.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 59 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000059.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 60 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000060.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 61 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000061.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 62 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000062.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 63 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000063.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 64 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000064.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 65 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000065.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 66 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000066.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 67 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000067.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 68 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000068.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 69 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000069.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 70 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000070.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 71 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000071.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 72 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000072.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 73 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000073.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 74 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000074.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 75 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000075.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 76 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000076.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 77 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000077.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 78 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000078.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 79 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000079.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 80 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000080.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 81 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000081.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 82 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000082.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 83 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000083.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 84 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000084.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 85 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000085.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 86 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000086.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 87 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000087.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 88 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000088.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 89 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000089.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 90 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000090.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 91 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000091.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 92 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000092.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 93 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000093.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 94 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000094.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 95 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000095.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 96 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000096.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 97 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000097.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 98 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000098.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 99 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000099.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 100 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000100.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 101 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000101.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 102 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000102.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 103 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000103.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 104 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000104.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 105 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000105.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 106 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000106.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 107 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000107.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 108 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000108.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 109 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000109.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 110 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000110.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 111 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000111.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 112 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000112.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 113 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000113.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 114 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000114.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 115 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000115.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 116 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000116.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 117 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000117.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 118 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000118.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 119 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000119.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 120 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000120.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 121 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000121.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 122 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000122.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 123 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000123.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 124 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000124.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 125 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000125.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 126 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000126.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 127 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000127.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 128 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000128.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 129 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000129.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 130 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000130.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 131 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000131.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 132 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000132.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 133 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000133.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 134 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000134.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 135 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000135.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 136 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000136.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 137 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000137.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 138 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000138.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 139 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000139.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 140 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000140.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 141 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000141.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 142 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000142.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 143 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000143.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 144 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000144.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 145 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000145.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 146 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000146.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 147 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000147.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 148 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000148.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 149 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000149.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 150 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000150.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 151 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000151.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 152 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000152.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 153 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000153.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 154 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000154.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 155 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000155.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 156 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000156.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 157 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000157.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 158 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000158.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 159 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000159.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 160 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000160.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 161 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000161.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 162 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000162.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 163 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000163.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 164 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000164.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 165 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000165.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 166 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000166.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 167 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000167.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 168 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000168.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 169 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000169.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 170 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000170.out 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/overlap.sh 171 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper/000171.out 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 02:02:23 2023 (12747 seconds)
+----------------------------------------START Fri Nov  3 02:02:23 2023
+find -L /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/1-overlapper \( -name \*ovb.gz -or -name \*ovb \) -print > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.ovlStore.list
+----------------------------------------END Fri Nov  3 02:02:23 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 02:02:23 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/overlapStoreBuild  -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.ovlStore.BUILDING  -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore  -M 65536 -L /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.ovlStore.list  > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.ovlStore.err 2>&1
+----------------------------------------END Fri Nov  3 02:02:31 2023 (8 seconds)
+----------------------------------------START CONCURRENT Fri Nov  3 02:02:31 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/frgcorr.sh 1 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/0001.err 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 02:08:43 2023 (372 seconds)
+----------------------------------------START Fri Nov  3 02:08:43 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/cat-corrects -L /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/cat-corrects.frgcorrlist -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/genome.frgcorr > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/cat-corrects.err 2>&1
+----------------------------------------END Fri Nov  3 02:08:43 2023 (0 seconds)
+----------------------------------------START CONCURRENT Fri Nov  3 02:08:43 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/ovlcorr.sh 1 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/0001.err 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/ovlcorr.sh 2 > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/0002.err 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 02:54:58 2023 (2775 seconds)
+----------------------------------------START Fri Nov  3 02:54:58 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/cat-erates -L /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/cat-erates.eratelist -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/genome.erates > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/cat-erates.err 2>&1
+----------------------------------------END Fri Nov  3 02:54:58 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 02:54:58 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/overlapStore  -u /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.ovlStore  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/genome.erates > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/3-overlapcorrection/overlapStore-update-erates.err 2>&1
+----------------------------------------END Fri Nov  3 02:54:58 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 02:54:58 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/bogart  -O /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.ovlStore  -G /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore  -T /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore  -B 10000  -eg 0.03  -Eg 1000  -em 0.03  -Em 1000  -repeatdetect 41 41 41 -el 499 -RS  -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/4-unitigger/genome  > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/4-unitigger/unitigger.err 2>&1
+----------------------------------------END Fri Nov  3 02:55:02 2023 (4 seconds)
+----------------------------------------START Fri Nov  3 02:55:02 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/gatekeeper  -P /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/4-unitigger/genome.partitioning  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/genome.partitioned.err 2>&1
+----------------------------------------END Fri Nov  3 02:55:07 2023 (5 seconds)
+----------------------------------------START CONCURRENT Fri Nov  3 02:55:07 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 1 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 2 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 3 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 4 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 5 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 6 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 7 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 8 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 9 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 10 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 11 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 12 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 13 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 14 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 15 > /dev/null 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 02:58:27 2023 (200 seconds)
+----------------------------------------START Fri Nov  3 02:58:27 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/tigStore -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore 2 -N -R /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/genome.fixes > genome.fixes.err 2>&1
+----------------------------------------END Fri Nov  3 02:58:27 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 02:58:27 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/tigStore \
+ -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-insert-sizes/genome.tigStore 3 \
+ -d matepair -U \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-insert-sizes/estimates.out 2>&1
+----------------------------------------END Fri Nov  3 02:58:27 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 02:58:27 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/gatekeeper \
+ --edit /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-insert-sizes/genome.tigStore.distupdate \
+        /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-insert-sizes/updates.err 2>&1
+----------------------------------------END Fri Nov  3 02:58:27 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 02:58:27 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/computeCoverageStat \
+ -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore 5 \
+ -s 0 \
+ -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-coverage-stat/genome \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-coverage-stat/computeCoverageStat.err 2>&1
+----------------------------------------END Fri Nov  3 02:58:28 2023 (1 seconds)
+----------------------------------------START Fri Nov  3 02:58:28 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/markRepeatUnique \
+ -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore 5 \
+ -j 1 \
+ -k 5 \
+ -long 12000 \
+ -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-coverage-stat/genome.markRepeatUnique \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-coverage-stat/markRepeatUnique.err 2>&1
+----------------------------------------END Fri Nov  3 02:58:28 2023 (0 seconds)
+Stop requested before 'scaffolder'.
+----------------------------------------START CONCURRENT Fri Nov  3 02:58:29 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 1 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 2 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 3 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 4 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 5 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 6 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 7 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 8 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 9 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 10 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 11 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 12 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 13 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 14 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 15 > /dev/null 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 02:58:29 2023 (0 seconds)
+Stop requested before 'scaffolder'.
+----------------------------------------START Fri Nov  3 03:25:48 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/bogart  -O /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.ovlStore  -G /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore  -T /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore  -B 10000  -eg 0.03  -Eg 1000  -em 0.03  -Em 1000  -repeatdetect 41 41 41 -el 499 -RS  -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/4-unitigger/genome  > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/4-unitigger/unitigger.err 2>&1
+----------------------------------------END Fri Nov  3 03:25:50 2023 (2 seconds)
+----------------------------------------START Fri Nov  3 03:25:50 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/gatekeeper  -P /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/4-unitigger/genome.partitioning  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/genome.partitioned.err 2>&1
+----------------------------------------END Fri Nov  3 03:25:56 2023 (6 seconds)
+----------------------------------------START CONCURRENT Fri Nov  3 03:25:56 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 1 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 2 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 3 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 4 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 5 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 6 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 7 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 8 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 9 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 10 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 11 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 12 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 13 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 14 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 15 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 16 > /dev/null 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 03:29:57 2023 (241 seconds)
+----------------------------------------START Fri Nov  3 03:29:57 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/tigStore -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore 2 -N -R /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/genome.fixes > genome.fixes.err 2>&1
+----------------------------------------END Fri Nov  3 03:29:57 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 03:29:57 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/tigStore \
+ -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-insert-sizes/genome.tigStore 3 \
+ -d matepair -U \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-insert-sizes/estimates.out 2>&1
+----------------------------------------END Fri Nov  3 03:29:59 2023 (2 seconds)
+----------------------------------------START Fri Nov  3 03:29:59 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/gatekeeper \
+ --edit /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-insert-sizes/genome.tigStore.distupdate \
+        /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-insert-sizes/updates.err 2>&1
+----------------------------------------END Fri Nov  3 03:29:59 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 03:29:59 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/computeCoverageStat \
+ -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore 5 \
+ -s 0 \
+ -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-coverage-stat/genome \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-coverage-stat/computeCoverageStat.err 2>&1
+----------------------------------------END Fri Nov  3 03:30:00 2023 (1 seconds)
+----------------------------------------START Fri Nov  3 03:30:00 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/markRepeatUnique \
+ -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+ -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore 5 \
+ -j 1 \
+ -k 5 \
+ -long 12000 \
+ -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-coverage-stat/genome.markRepeatUnique \
+> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus-coverage-stat/markRepeatUnique.err 2>&1
+----------------------------------------END Fri Nov  3 03:30:01 2023 (1 seconds)
+Stop requested before 'scaffolder'.
+----------------------------------------START CONCURRENT Fri Nov  3 03:30:02 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 1 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 2 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 3 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 4 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 5 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 6 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 7 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 8 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 9 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 10 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 11 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 12 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 13 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 14 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 15 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/5-consensus/consensus.sh 16 > /dev/null 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 03:30:02 2023 (0 seconds)
+Stop requested before 'scaffolder'.
+----------------------------------------START Fri Nov  3 03:30:03 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/cgw  \
+  -j 1 -k 5 \
+  -r 5 \
+  -s 0 \
+  -filter 1 \
+  -minmergeweight 2 \
+  -GG \
+  -P 2 \
+  -B 10000 \
+  -shatter 0 \
+  -missingMate -1 \
+  -m 100 \
+  -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore \
+  -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore \
+  -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/7-0-CGW/genome \
+ > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/7-0-CGW/cgw.out 2>&1
+----------------------------------------END Fri Nov  3 03:30:53 2023 (50 seconds)
+----------------------------------------START Fri Nov  3 03:30:53 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/gatekeeper -P /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/7-CGW/genome.partitioning /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/genome.partitioned.err 2>&1
+----------------------------------------END Fri Nov  3 03:30:58 2023 (5 seconds)
+----------------------------------------START Fri Nov  3 03:30:58 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/tigStore -d consensus -U -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore 11 -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/genome.unitigs.fasta
+----------------------------------------END Fri Nov  3 03:30:59 2023 (1 seconds)
+----------------------------------------START CONCURRENT Fri Nov  3 03:30:59 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 1 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 2 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 3 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 4 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 5 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 6 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 7 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 8 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 9 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 10 > /dev/null 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 03:32:02 2023 (63 seconds)
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/genome_009 failed -- no .success.
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/genome_010 failed -- no .success.
+================================================================================
+
+runCA failed.
+
+----------------------------------------
+Stack trace:
+
+ at /scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/../bin/runCA line 1613.
+	main::caFailure("2 consensusAfterScaffolder jobs failed; remove /scicore/home/"..., undef) called at /scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/../bin/runCA line 5758
+	main::postScaffolderConsensus() called at /scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/../bin/runCA line 6533
+
+----------------------------------------
+Failure message:
+
+2 consensusAfterScaffolder jobs failed; remove /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh to try again
+
+----------------------------------------START CONCURRENT Fri Nov  3 03:32:02 2023
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 1 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 2 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 3 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 4 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 5 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 6 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 7 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 8 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 9 > /dev/null 2>&1
+/scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/8-consensus/consensus.sh 10 > /dev/null 2>&1
+----------------------------------------END CONCURRENT Fri Nov  3 03:32:02 2023 (0 seconds)
+----------------------------------------START Fri Nov  3 03:32:02 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/terminator -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore 12 -c /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/7-CGW/genome 11 -o /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.asm.err 2>&1
+----------------------------------------END Fri Nov  3 03:32:04 2023 (2 seconds)
+----------------------------------------START Fri Nov  3 03:32:04 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/asmOutputFasta -p /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.asm > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/asmOutputFasta.err 2>&1
+----------------------------------------END Fri Nov  3 03:32:13 2023 (9 seconds)
+----------------------------------------START Fri Nov  3 03:32:13 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/dumpSingletons  -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore  -t /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.tigStore  -c /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/7-CGW/genome -n 11 -S > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.singleton.fasta 2> /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/dumpSingletons.err 
+----------------------------------------END Fri Nov  3 03:32:17 2023 (4 seconds)
+----------------------------------------START Fri Nov  3 03:32:17 2023
+/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/buildPosMap -o genome -g /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/genome.gkpStore < /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.asm > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/buildPosMap.err 2>&1
+----------------------------------------END Fri Nov  3 03:32:19 2023 (2 seconds)
+----------------------------------------START Fri Nov  3 03:32:19 2023
+sort -k2n -k3n -T /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.sorted &&/scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/fragmentDepth -min       0 -max    3000 < /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.sorted > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.histogram1 && /scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/fragmentDepth -min    3001 -max   10000 < /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.sorted > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.histogram2 && /scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/fragmentDepth -min   10001 -max 1000000 < /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.sorted > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.histogram3 && /scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/fragmentDepth -min 1000001              < /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.sorted > /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.posmap.frgscf.histogram4 
+----------------------------------------END Fri Nov  3 03:32:20 2023 (1 seconds)
+----------------------------------------START Fri Nov  3 03:32:20 2023
+/usr/bin/env perl /scicore/soft/apps/MaSuRCA/4.0.9-foss-2021a-Perl-5.32.1/bin/caqc.pl -euid  /scicore/home/schpie00/baer0006/ONT/de_novo_pipeline/work/1a/c47847d1cfa909d9a123e813f9e54d/CA.mr.99.17.15.0.02/9-terminator/genome.asm
+[Scaffolds]
+TotalScaffolds                  1564      
+TotalContigsInScaffolds         1584      
+MeanContigsPerScaffold          1.01
+MinContigsPerScaffold           1         
+MaxContigsPerScaffold           3         
+
+TotalBasesInScaffolds           132190003 
+MeanBasesInScaffolds            84520
+MinBasesInScaffolds             3671      
+MaxBasesInScaffolds             4662530   
+N25ScaffoldBases                669723
+N50ScaffoldBases                259721
+N75ScaffoldBases                52065
+ScaffoldAt100000000             50826
+
+TotalSpanOfScaffolds            132272797 
+MeanSpanOfScaffolds             84573
+MinScaffoldSpan                 3671      
+MaxScaffoldSpan                 4662530   
+IntraScaffoldGaps               20        
+2KbScaffolds                    1564      
+2KbScaffoldSpan                 132272797 
+MeanSequenceGapLength           4140
+
+[Top5Scaffolds=contigs,size,span,avgContig,avgGap,EUID]
+0=1,4662530,4662530,4662530,0,7180000003229
+1=1,3691657,3691657,3691657,0,7180000003225
+2=1,3600374,3600374,3600374,0,7180000004777
+3=1,2084320,2084320,2084320,0,7180000003262
+4=1,1649767,1649767,1649767,0,7180000003351
+total=5,15688648,15688648,3137730,0
+
+[Contigs]
+TotalContigsInScaffolds         1584      
+TotalBasesInScaffolds           132190003 
+TotalVarRecords                 0         
+MeanContigLength                83453
+MinContigLength                 3671      
+MaxContigLength                 4662530   
+N25ContigBases                  669723
+N50ContigBases                  253565
+N75ContigBases                  51530
+ContigAt100000000               49945
+
+[BigContigs_greater_10000]
+TotalBigContigs                 1566      
+BigContigLength                 132051049 
+MeanBigContigLength             84324
+MinBigContig                    10102     
+MaxBigContig                    4662530   
+BigContigsPercentBases          99.89
+
+[SmallContigs]
+TotalSmallContigs               18        
+SmallContigLength               138954    
+MeanSmallContigLength           7720
+MinSmallContig                  3671      
+MaxSmallContig                  9973      
+SmallContigsPercentBases        0.11
+
+[DegenContigs]
+TotalDegenContigs               21        
+DegenContigLength               91523     
+DegenVarRecords                 0         
+MeanDegenContigLength           4358
+MinDegenContig                  500       
+MaxDegenContig                  11697     
+DegenPercentBases               0.07
+
+[Top5Contigs=reads,bases,EUID]
+0=3593,4662530,7180000001624
+1=3719,3691657,7180000001620
+2=3617,3600374,7180000003214
+3=1986,2084320,7180000001659
+4=1421,1649767,7180000001748
+total=14336,15688648
+
+[UniqueUnitigs]
+TotalUUnitigs                   1599      
+MinUUnitigLength                3671      
+MaxUUnitigLength                4662530   
+MeanUUnitigLength               82706
+SDUUnitigLength                 220045
+
+[Surrogates]
+TotalSurrogates                 0         
+SurrogateInstances              0         
+SurrogateLength                           
+SurrogateInstanceLength         0         
+UnPlacedSurrReadLen             0         
+PlacedSurrReadLen               0         
+MinSurrogateLength              0         
+MaxSurrogateLength              0         
+MeanSurrogateLength             0
+SDSurrogateLength               0
+
+[Mates]
+ReadsWithNoMate                 104525(71.24%)
+ReadsWithGoodMate               4860(3.31%)
+ReadsWithBadShortMate           152(0.10%)
+ReadsWithBadLongMate            142(0.10%)
+ReadsWithSameOrientMate         570(0.39%)
+ReadsWithOuttieMate             136(0.09%)
+ReadsWithBothChaffMate          12550(8.55%)
+ReadsWithChaffMate              17194(11.72%)
+ReadsWithBothDegenMate          0(0.00%)  
+ReadsWithDegenMate              28(0.02%) 
+ReadsWithBothSurrMate           0(0.00%)  
+ReadsWithSurrogateMate          0(0.00%)  
+ReadsWithDiffScafMate           6572(4.48%)
+ReadsWithUnassignedMate         0(0.00%)  
+TotalScaffoldLinks              10        
+MeanScaffoldLinkWeight          2.40
+
+[Reads]
+TotalReadsInput                 NA        
+TotalUsableReads                146729    
+AvgClearRange                   11657
+ContigReads                     92065(62.74%)
+BigContigReads                  91906(62.64%)
+SmallContigReads                159(0.11%)
+DegenContigReads                206(0.14%)
+SurrogateReads                  0(0.00%)  
+PlacedSurrogateReads            0(0.00%)  
+SingletonReads                  54458(37.11%)
+ChaffReads                      54458(37.11%)
+
+[Coverage]
+ContigsOnly                     9.23
+Contigs_Surrogates              9.23
+Contigs_Degens_Surrogates       9.23
+AllReads                        12.94
+
+[TotalBaseCounts]
+BasesCount                      NA        
+ClearRangeLengthFRG             NA        
+ClearRangeLengthASM             1710384610
+SurrogateBaseLength             0         
+ContigBaseLength                1220237428
+DegenBaseLength                 619876    
+SingletonBaseLength             489527306 
+Contig_SurrBaseLength           1220237428
+
+[gcContent]
+Content                         42.83
+
+----------------------------------------END Fri Nov  3 03:32:30 2023 (10 seconds)
+The Cleaner has arrived.  Doing 'none'.
