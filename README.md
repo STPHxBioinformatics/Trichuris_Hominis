@@ -1,4 +1,4 @@
-# Phylogenetic placement, whole genome assembly, and genome-wide association study of *Trichuris incognita*: a novel human-infecting species causing trichuriasis, with low sensitivity to albendazole-ivermectin
+# Genomic and morphological characterization of *Trichuris incognita*, a Human-Infecting *Trichuris* species
 Author: Max Bär, max.baer[at]swisstph.ch
 
 ## Contents:
