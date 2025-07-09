@@ -29,6 +29,9 @@ allele_freq <- sapply(dp4_values, function(dp4) {
     NA  # Handle cases where DP4 is not properly formatted
   }
 })
+
+
+
 variant_df <- data.frame(pos = variant_pos, allele_frequency = allele_freq)
 
 # Display the data frame
@@ -51,14 +54,14 @@ vertical_bands$center <- (vertical_bands$xmin + vertical_bands$xmax) / 2
 smoothed_plot <- ggplot(coverage_df, aes(x = pos, y = smoothed_coverage)) +
   geom_line(color = "blue") +
   geom_vline(data = variant_df, aes(xintercept = pos), color = "red", linetype = "dashed", alpha = 0.7) +  # Vertical lines for variants
-  geom_point(data = variant_df, aes(x = pos, y = allele_frequency * 100), color = "purple", size = 2) +  # Points for allele frequencies (scaled)
+  #geom_point(data = variant_df, aes(x = pos, y = allele_frequency * 100), color = "purple", size = 2) +  # Points for allele frequencies (scaled)
   geom_rect(data = vertical_bands, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf), 
             fill = "darkgray", alpha = 0.5, inherit.aes = FALSE) +  # Darker rectangles
   # Add labels to the center of each vertical band
   geom_text(data = vertical_bands, aes(x = center, y = 52.5, label = label), color = "black", size = 3, angle = 90, vjust = 0.5, inherit.aes = FALSE) +
   scale_y_continuous(
     limits = c(0, 105),  # Set the limits for the primary y-axis (coverage)
-    sec.axis = sec_axis(~ . / 100, name = "Allele Frequency")  # Add a secondary y-axis
+    #sec.axis = sec_axis(~ . / 100, name = "Allele Frequency")  # Add a secondary y-axis
   ) +
   labs(
     x = "Position on beta-tubulin gene",
