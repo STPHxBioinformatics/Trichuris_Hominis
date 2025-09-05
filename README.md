@@ -1,8 +1,9 @@
 # Genomic and morphological characterization of *Trichuris incognita*, a Human-Infecting *Trichuris* species
 Author: Max Bär, max.baer[at]swisstph.ch
+Current maintainer: Pierre Schneeberger, pierre.schneeberger[at]swisstph.ch
 
 ## Contents:
-This repository contains all code to reproduce the results and figures from the publication [Phylogenetic placement, whole genome assembly, and genome-wide association study of *Trichuris incognita*: a novel human-infecting species causing trichuriasis, with low sensitivity to albendazole-ivermectin](https://www.biorxiv.org/content/10.1101/2024.06.11.598441v3).
+This repository contains all code to reproduce the results and figures from the publication [Genomic and morphological characterization of *Trichuris incognita*, a Human-Infecting *Trichuris* species](https://www.biorxiv.org/content/10.1101/2024.06.11.598441v3).
 4 pipelines are presented, for the de-novo hybrid genome assembly, for the gene prediction and functional annotation of the 
 newly assembly genome, for the assembly and phylogenetic inference of 747 individual mitogenomes of *T. incognita*. Nextflow was the main language used
 to construct the pipelines and each code snippet is elaborated on in the respective README.md file in the sub-directories. All scripts were run on the SciCORE computing cluster at the University of Basel with most modules pre-installed.
