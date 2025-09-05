@@ -1,5 +1,6 @@
 # Genomic and morphological characterization of *Trichuris incognita*, a Human-Infecting *Trichuris* species
 Author: Max Bär, max.baer[at]swisstph.ch
+
 Current maintainer: Pierre Schneeberger, pierre.schneeberger[at]swisstph.ch
 
 ## Contents:
